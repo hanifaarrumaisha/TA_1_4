@@ -50,4 +50,54 @@ public class JadwalPoliModel implements Serializable {
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private DokterModel dokter;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getTanggal() {
+		return tanggal;
+	}
+
+	public void setTanggal(Date tanggal) {
+		this.tanggal = tanggal;
+	}
+
+	public Time getJamMulai() {
+		return jamMulai;
+	}
+
+	public void setJamMulai(Time jamMulai) {
+		this.jamMulai = jamMulai;
+	}
+
+	public Time getJamSelesai() {
+		return jamSelesai;
+	}
+
+	public void setJamSelesai(Time jamSelesai) {
+		this.jamSelesai = jamSelesai;
+	}
+
+	public PoliModel getPoli() {
+		return poli;
+	}
+
+	public void setPoli(PoliModel poli) {
+		this.poli = poli;
+	}
+
+	public DokterModel getDokter() {
+		return dokter;
+	}
+
+	public void setDokter(DokterModel dokter) {
+		this.dokter = dokter;
+	}
+	
+	
 }
