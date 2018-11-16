@@ -33,14 +33,18 @@ public class RujukanRawatJalanModel {
 	private long id;
 	
 	@NotNull
+	@Column(name = "id_pasien", nullable = false)
+	private int idPasien;
+	
+	@NotNull
 	@Size(max = 255)
 	@Column(name = "nama_pasien", nullable = false)
-	private String nama_pasien;
+	private String namaPasien;
 	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "tanggal_rujuk", nullable = false)
-	private Date tanggal_rujuk;
+	private Date tanggalRujuk;
 	
 	@NotNull
 	@Column(name = "status", nullable = false)
@@ -55,50 +59,41 @@ public class RujukanRawatJalanModel {
 	@JsonIgnore
 	private JadwalPoliModel jadwalPoli;
 
-	public JadwalPoliModel getJadwalPoli() {
-		return jadwalPoli;
-	}
-
-
-	public void setJadwalPoli(JadwalPoliModel jadwalPoli) {
-		this.jadwalPoli = jadwalPoli;
-	}
-
-
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-	public String getNama_pasien() {
-		return nama_pasien;
+	public int getIdPasien() {
+		return idPasien;
 	}
 
-
-	public void setNama_pasien(String nama_pasien) {
-		this.nama_pasien = nama_pasien;
+	public void setIdPasien(int idPasien) {
+		this.idPasien = idPasien;
 	}
 
-
-	public Date getTanggal_rujuk() {
-		return tanggal_rujuk;
+	public String getNamaPasien() {
+		return namaPasien;
 	}
 
-
-	public void setTanggal_rujuk(Date tanggal_rujuk) {
-		this.tanggal_rujuk = tanggal_rujuk;
+	public void setNamaPasien(String namaPasien) {
+		this.namaPasien = namaPasien;
 	}
 
+	public Date getTanggalRujuk() {
+		return tanggalRujuk;
+	}
+
+	public void setTanggalRujuk(Date tanggalRujuk) {
+		this.tanggalRujuk = tanggalRujuk;
+	}
 
 	public int getStatus() {
 		return status;
 	}
-
 
 	public void setStatus(int status) {
 		this.status = status;
@@ -108,8 +103,17 @@ public class RujukanRawatJalanModel {
 		return listPenanganan;
 	}
 
-
 	public void setListPenanganan(List<PenangananModel> listPenanganan) {
 		this.listPenanganan = listPenanganan;
 	}
+
+	public JadwalPoliModel getJadwalPoli() {
+		return jadwalPoli;
+	}
+
+	public void setJadwalPoli(JadwalPoliModel jadwalPoli) {
+		this.jadwalPoli = jadwalPoli;
+	}
+	
+	
 }
