@@ -55,6 +55,16 @@ public class RujukanRawatJalanModel {
 	@JsonIgnore
 	private JadwalPoliModel jadwalPoli;
 
+	public JadwalPoliModel getJadwalPoli() {
+		return jadwalPoli;
+	}
+
+
+	public void setJadwalPoli(JadwalPoliModel jadwalPoli) {
+		this.jadwalPoli = jadwalPoli;
+	}
+
+
 	public long getId() {
 		return id;
 	}
