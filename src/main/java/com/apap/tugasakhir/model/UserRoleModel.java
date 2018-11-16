@@ -14,9 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_role")
-public class UserRoleModel implements Serializable {
-	private String sistem;
-	
+public class UserRoleModel implements Serializable {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -36,6 +34,10 @@ public class UserRoleModel implements Serializable {
 	@Column(name = "role", nullable = false)
 	private String role;
 
+	@NotNull
+	@Column(name = "sistem", nullable = false)
+	private String sistem;
+	
 	public String getSistem() {
 		return sistem;
 	}
