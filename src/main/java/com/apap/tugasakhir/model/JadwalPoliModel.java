@@ -2,7 +2,7 @@ package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
