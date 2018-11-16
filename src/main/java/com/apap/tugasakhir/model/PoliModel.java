@@ -33,10 +33,10 @@ public class PoliModel implements Serializable {
 	@Column (name = "deskripsi", nullable = false)
 	private String deskripsi;
 	
-	@OneToMany(mappedBy = "jadwal_poli", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "poli", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<JadwalPoliModel> listJadwalPoli;
 	
-	@OneToMany(mappedBy = "hari_poli", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "poli", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<HariPoliModel> listHariPoli;
 
 	public int getId() {
