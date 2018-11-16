@@ -1,6 +1,6 @@
 package com.apap.tugasakhir.model;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,6 +30,12 @@ public class PenangananModel implements Serializable {
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private ObatModel obat;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_rujukan_rawat_jalan", referencedColumnName = "id", nullable = false)
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@JsonIgnore
+	private RujukanRawatJalanModel rujukanRawatJalan;
 	
 	public int getId() {
 		return id;
@@ -70,10 +76,4 @@ public class PenangananModel implements Serializable {
 	public void setRujukanRawatJalan(RujukanRawatJalanModel rujukanRawatJalan) {
 		this.rujukanRawatJalan = rujukanRawatJalan;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "rujukan_rawat_jalan", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
-	private RujukanRawatJalanModel rujukanRawatJalan;
 }
