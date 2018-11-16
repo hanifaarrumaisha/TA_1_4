@@ -46,16 +46,14 @@ public class RujukanRawatJalanModel {
 	@Column(name = "status", nullable = false)
 	private int status;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_pasien", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
-	private PasienModel pasien;
-	
-	
 	@OneToMany(mappedBy = "rujukan_rawat_jalan", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<PenangananModel> listPenanganan;
-	//masih bingung yang id_jadwal
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_jadwal", referencedColumnName = "id", nullable = false)
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@JsonIgnore
+	private JadwalPoliModel jadwalPoli;
 
 	public long getId() {
 		return id;
@@ -95,17 +93,6 @@ public class RujukanRawatJalanModel {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-
-	public PasienModel getPasien() {
-		return pasien;
-	}
-
-
-	public void setPasien(PasienModel pasien) {
-		this.pasien = pasien;
-	}
-
 
 	public List<PenangananModel> getListPenanganan() {
 		return listPenanganan;

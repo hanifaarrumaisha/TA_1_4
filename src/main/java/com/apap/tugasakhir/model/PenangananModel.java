@@ -31,6 +31,46 @@ public class PenangananModel implements Serializable {
 	@JsonIgnore
 	private ObatModel obat;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getWaktu() {
+		return waktu;
+	}
+
+	public void setWaktu(Date waktu) {
+		this.waktu = waktu;
+	}
+
+	public String getDeskripsi() {
+		return deskripsi;
+	}
+
+	public void setDeskripsi(String deskripsi) {
+		this.deskripsi = deskripsi;
+	}
+
+	public ObatModel getObat() {
+		return obat;
+	}
+
+	public void setObat(ObatModel obat) {
+		this.obat = obat;
+	}
+
+	public RujukanRawatJalanModel getRujukanRawatJalan() {
+		return rujukanRawatJalan;
+	}
+
+	public void setRujukanRawatJalan(RujukanRawatJalanModel rujukanRawatJalan) {
+		this.rujukanRawatJalan = rujukanRawatJalan;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "rujukan_rawat_jalan", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)

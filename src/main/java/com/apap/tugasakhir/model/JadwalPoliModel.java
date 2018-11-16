@@ -45,12 +45,6 @@ public class JadwalPoliModel implements Serializable {
 	@JsonIgnore
 	private PoliModel poli;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dokter", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
-	private DokterModel dokter;
-
 	public int getId() {
 		return id;
 	}
@@ -90,14 +84,5 @@ public class JadwalPoliModel implements Serializable {
 	public void setPoli(PoliModel poli) {
 		this.poli = poli;
 	}
-
-	public DokterModel getDokter() {
-		return dokter;
-	}
-
-	public void setDokter(DokterModel dokter) {
-		this.dokter = dokter;
-	}
-	
 	
 }
