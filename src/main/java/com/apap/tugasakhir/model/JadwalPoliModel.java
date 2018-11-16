@@ -40,7 +40,7 @@ public class JadwalPoliModel implements Serializable {
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "poli", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "id_poli", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private PoliModel poli;
