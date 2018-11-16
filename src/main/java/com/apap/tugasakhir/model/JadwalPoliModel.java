@@ -41,7 +41,26 @@ public class JadwalPoliModel implements Serializable {
 	@Column (name = "jam_selesai", nullable = false)
 	private Time jamSelesai;
 	
+	@NotNull
+	@Column (name = "id_dokter", nullable = false)
+	private int idDokter;
 	
+	public int getIdDokter() {
+		return idDokter;
+	}
+
+	public void setIdDokter(int idDokter) {
+		this.idDokter = idDokter;
+	}
+
+	public List<RujukanRawatJalanModel> getListRujukan() {
+		return listRujukan;
+	}
+
+	public void setListRujukan(List<RujukanRawatJalanModel> listRujukan) {
+		this.listRujukan = listRujukan;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_poli", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
