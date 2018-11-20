@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tugasakhir.model.PoliModel;
 import com.apap.tugasakhir.service.PoliService;
@@ -17,6 +18,7 @@ public class PoliController {
 
 	@Autowired
 	private PoliService poliService;
+	private int tempId;
 	
 	@RequestMapping(value="/rawat-jalan/poli/tambah",method = RequestMethod.GET)
 	private String addPoli(Model model) {
@@ -35,5 +37,19 @@ public class PoliController {
 		List<PoliModel> archive = poliService.findAll();
 		model.addAttribute("listPoli", archive);
 		return "view-poli"; //belum dibuat
+	}
+	@RequestMapping(value = "/rawat-jalan/poli/ubah", method = RequestMethod.GET)
+	private String editPoli(@RequestParam("id_poli") Integer id_poli, Model model) {
+		PoliModel poli = poliService.getPoliById(id_poli);
+		tempId = id_poli;
+		model.addAttribute("poli", poli);
+		return "ubah-poli"; //belum dibuat
+	}
+	@RequestMapping(value = "/rawat-jalan/poli/ubah", method = RequestMethod.POST)
+	private String updatePoliSubmit(@ModelAttribute PoliModel poli, Model model) {
+		poli.setId(tempId);
+		poliService.updatePoli(poli);
+		model.addAttribute("poli", poli);
+		return "ubah-poli-success"; //belum dibuat
 	}
 }
