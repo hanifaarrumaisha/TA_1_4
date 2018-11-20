@@ -24,6 +24,6 @@ public class ObatModel implements Serializable {
 	@Column (name = "jumlah", nullable = false)
 	private int jumlah;
 	
-	@OneToMany(mappedBy = "penanganan", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "obat", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<PenangananModel> listPenanganan;
 }

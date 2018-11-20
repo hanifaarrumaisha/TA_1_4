@@ -50,7 +50,7 @@ public class RujukanRawatJalanModel {
 	@Column(name = "status", nullable = false)
 	private int status;
 	
-	@OneToMany(mappedBy = "rujukan_rawat_jalan", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "rujukanRawatJalan", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<PenangananModel> listPenanganan;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -1,6 +1,7 @@
 package com.apap.tugasakhir.model;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ public class PenangananModel implements Serializable {
 	
 	@NotNull
 	@Column (name = "waktu", nullable = false)
-	private Date waktu;
+	private Timestamp waktu;
 	
 	@NotNull
 	@Size(max = 255)
@@ -44,12 +45,14 @@ public class PenangananModel implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
 
-	public Date getWaktu() {
+	public Timestamp getWaktu() {
 		return waktu;
 	}
 
-	public void setWaktu(Date waktu) {
+	public void setWaktu(Timestamp waktu) {
 		this.waktu = waktu;
 	}
 

@@ -67,7 +67,7 @@ public class JadwalPoliModel implements Serializable {
 	@JsonIgnore
 	private PoliModel poli;
 	
-	@OneToMany(mappedBy = "jadwal_poli", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "jadwalPoli", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<RujukanRawatJalanModel> listRujukan;
 	
 	public int getId() {
