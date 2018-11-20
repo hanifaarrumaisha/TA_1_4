@@ -14,10 +14,10 @@ public class PasienController {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	@Bean
-	public RestTemplate rest() {
-		return new RestTemplate();
-	}
+//	@Bean
+//	public RestTemplate rest() {
+//		return new RestTemplate();
+//	}
 	
 	@RequestMapping()
 	public String getPasien() {
@@ -30,23 +30,4 @@ public class PasienController {
 //	private PasienService pasienService;
 	
 	
-	@RequestMapping("/getAllPasien")
-	private Object getAllPasien() throws Exception{
-		String path = Setting.siApp+ "/getAllPasienIGD";
-		String detailPasien = restTemplate.getForObject(path, String.class);
-
-		return detailPasien;
-
-//		HttpHeaders headers = new HttpHeaders(); 
-//		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//		headers.add("user-agent", "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36");
-//		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-//		String path = Setting.apiUrl+ "/getAllPasienIGD";
-//		return restTemplate.exchange(path, HttpMethod.GET, entity, Object.class);
-		
-//		List<PasienModel> pasien = pasienService.getAllPasien();
-//		PasienDetail detailPasien = restTemplate.getForObject(path, PasienDetail.class);
-//		return detailPasien;
-	}
-
 }
