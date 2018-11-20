@@ -50,13 +50,12 @@ public class RujukanRawatJalanModel {
 	@Column(name = "status", nullable = false)
 	private int status;
 	
-	@OneToMany(mappedBy = "rujukan_rawat_jalan", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "rujukanRawatJalan", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<PenangananModel> listPenanganan;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_jadwal", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
 	private JadwalPoliModel jadwalPoli;
 
 	public long getId() {
