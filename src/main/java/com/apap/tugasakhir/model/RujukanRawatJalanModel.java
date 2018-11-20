@@ -56,7 +56,6 @@ public class RujukanRawatJalanModel {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_jadwal", referencedColumnName = "id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
 	private JadwalPoliModel jadwalPoli;
 
 	public long getId() {

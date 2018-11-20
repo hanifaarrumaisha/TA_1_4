@@ -20,13 +20,6 @@ public class JadwalPoliController {
 	@Autowired
 	private JadwalPoliService jadwalPoliService;
 	
-	@Autowired
-	RestTemplate restTemplate;
-	
-	@Bean
-	public RestTemplate rest() {
-		return new RestTemplate();
-	}
 	
 	@RequestMapping(value = "/tambah" , method = RequestMethod.GET)
 	private String addJadwalPoli (Model model) {

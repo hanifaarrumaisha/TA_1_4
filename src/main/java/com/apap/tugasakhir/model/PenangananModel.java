@@ -48,35 +48,4 @@ public class PenangananModel implements Serializable {
 	
 	
 
-	public Timestamp getWaktu() {
-		return waktu;
-	}
-
-	public void setWaktu(Timestamp waktu) {
-		this.waktu = waktu;
-	}
-
-	public String getDeskripsi() {
-		return deskripsi;
-	}
-
-	public void setDeskripsi(String deskripsi) {
-		this.deskripsi = deskripsi;
-	}
-
-	public ObatModel getObat() {
-		return obat;
-	}
-
-	public void setObat(ObatModel obat) {
-		this.obat = obat;
-	}
-
-	public RujukanRawatJalanModel getRujukanRawatJalan() {
-		return rujukanRawatJalan;
-	}
-
-	public void setRujukanRawatJalan(RujukanRawatJalanModel rujukanRawatJalan) {
-		this.rujukanRawatJalan = rujukanRawatJalan;
-	}
 }
