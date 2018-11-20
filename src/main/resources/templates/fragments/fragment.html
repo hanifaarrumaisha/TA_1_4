@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    </head>
+
+    <head th:fragment="js">
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </head>
+</head>
+
+<body>
+<div th:fragment="navbar" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">APAP</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav pull-right">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/user/updatePassword}">Update Password</a>
+                </li>
+            	<li class="nav-item active">
+            		<a class="nav-link" th:href="@{/logout}">Logout</a>
+            	</li>
+            </ul>
+        </div>
+    </nav>
+    <div th:replace="${alert} ? ~{fragments/fragment :: ${alert}} : ~{}"></div>
+</div>
+</body>
+
+	<div th:fragment="alert-blue" th:text="${alertText}"
+		class="alert alert-primary" role="alert"></div>
+	<div th:fragment="alert-grey" th:text="${alertText}"
+		class="alert alert-secondary" role="alert">
+		This is a secondary alert with <a href="#" class="alert-link">an
+			example link</a>. Give it a click if you like.
+	</div>
+	<div th:fragment="alert-green" th:text="${alertText}"
+		class="alert alert-success" role="alert">
+		This is a success alert with <a href="#" class="alert-link">an
+			example link</a>. Give it a click if you like.
+	</div>
+	<div th:fragment="alert-red" th:text="${alertText}"
+		class="alert alert-danger" role="alert">
+		This is a danger alert with <a href="#" class="alert-link">an
+			example link</a>. Give it a click if you like.
+	</div>
+	<div th:fragment="alert-yellow" th:text="${alertText}"
+		class="alert alert-warning" role="alert">
+		This is a warning alert with <a href="#" class="alert-link">an
+			example link</a>. Give it a click if you like.
+	</div>
+	<div th:fragment="alert-transparant" th:text="${alertText}"
+		class="alert alert-light" role="alert">
+		This is a light alert with <a href="#" class="alert-link">an
+			example link</a>. Give it a click if you like.
+	</div>
+
+</html>
