@@ -18,6 +18,7 @@ import com.apap.tugasakhir.rest.DokterDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.PoliRujukanDetail;
+import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.rest.StatusPasienDetail;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -105,7 +106,6 @@ public class RestServiceImpl implements RestService{
 				poli.setNama((String) poliJson.get("nama"));
 				pasien.setPoliRujukan(poli);
 			}
-			
 			allPasien.add(pasien);
 			System.out.println(pasien.getNama());
 		}
