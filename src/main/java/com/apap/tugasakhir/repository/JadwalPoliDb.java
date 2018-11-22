@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 import com.apap.tugasakhir.model.JadwalPoliModel;
 
 public interface JadwalPoliDb extends JpaRepository<JadwalPoliModel, Integer> {
-
 }

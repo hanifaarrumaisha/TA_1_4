@@ -1,12 +1,17 @@
 package com.apap.tugasakhir.controller;
 
+import java.util.List;
+
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.Setting;
+import com.apap.tugasakhir.service.RestService;
 
 @RestController
 @RequestMapping("/rawat-jalan/pasien")
@@ -14,20 +19,23 @@ public class PasienController {
 	@Autowired
 	RestTemplate restTemplate;
 	
-//	@Bean
-//	public RestTemplate rest() {
-//		return new RestTemplate();
-//	}
+
+	@Autowired
+	RestService restService;
 	
-	@RequestMapping()
-	public String getPasien() {
-        String response = restTemplate.getForObject(Setting.siApp+"/getAllPasienRawatJalan/", String.class);
-        System.out.println(response);
-        return response;
+		
+	@RequestMapping("/getAllPasien")
+	public List<PasienDetail> getAllPasien() throws ParseException {
+		String url = Setting.siApp+"/getAllPasienRawatJalan/";
+		String response = restService.getRest(url);
+		return restService.parseAllPasien(response);
 	}
 	
-//	@Autowired
-//	private PasienService pasienService;
-	
-	
+
+	@RequestMapping("/getPasien")
+	public PasienDetail getPasien() throws ParseException {
+		String url = Setting.siApp+"/getPasien/1";
+		String response = restService.getRest(url);
+		return restService.parsePasien(response);
+	}
 }

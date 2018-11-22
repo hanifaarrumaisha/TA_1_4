@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.apap.tugasakhir.rest.Setting;
+import com.apap.tugasakhir.service.RestService;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.*;
@@ -22,6 +24,9 @@ import com.apap.tugasakhir.rest.*;
 @RequestMapping("/dokter")
 public class DokterController {
 	@Autowired
+	RestService restService;
+	
+	@Autowired
 	RestTemplate restTemplate;
 	
 	@Bean
@@ -30,19 +35,9 @@ public class DokterController {
 	}
 	
 	@RequestMapping()
-	public String getDokter(@RequestParam("id") String id) throws ParseException {
-		JSONParser parser = new JSONParser();
-		String response = restTemplate.getForObject(Setting.siApp+"/getDokter/"+id, String.class);
-        System.out.println(response);
-        JSONObject json = (JSONObject) parser.parse(response);
-        JSONObject result = (JSONObject) json.get("result");
-        String nama = (String) result.get("nama");
-        long id_dokter = (Long) result.get("id");
-        
-        System.out.println(nama);
-        System.out.println(id_dokter);
-        
-        return response;
+	public DokterDetail ambilDokter(@RequestParam("id") String id ) throws ParseException{
+		int id_dokter = Integer.parseInt(id);
+		return restService.getDokter(id_dokter);
 	}
 	
 //	@GetMapping()
