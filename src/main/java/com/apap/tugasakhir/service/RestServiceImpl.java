@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.apap.tugasakhir.rest.DokterDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.PoliRujukanDetail;
@@ -139,4 +140,24 @@ public class RestServiceImpl implements RestService{
 		}
 		return allPasien;
 	}
+
+	@Override
+	public DokterDetail getDokter(int idDokter) throws ParseException {
+		DokterDetail dokter = new DokterDetail();
+		JSONParser parser = new JSONParser();
+		String response = restTemplate.getForObject(Setting.siApp+"/getDokter/"+idDokter, String.class);
+        System.out.println(response);
+        JSONObject json = (JSONObject) parser.parse(response);
+        JSONObject result = (JSONObject) json.get("result");
+        String nama = (String) result.get("nama");
+        long id_dokter = (long) result.get("id");
+        dokter.setId((int)id_dokter);
+        dokter.setNama(nama);
+        System.out.println(nama);
+        System.out.println(id_dokter);
+        
+        return dokter;
+	}
+
+
 }

@@ -23,14 +23,11 @@ public class PasienController {
 	@Autowired
 	RestTemplate restTemplate;
 	
+
 	@Autowired
 	RestService restService;
 	
-	@Bean
-	public RestTemplate rest() {
-		return new RestTemplate();
-	}
-	
+		
 	@RequestMapping("/getAllPasien")
 	public List<PasienRujukanDetail> getAllPasien() throws ParseException, JsonParseException, JsonMappingException, IOException {
 		String url = Setting.siApp+"/4/getAllPasienRawatJalan/";
@@ -38,6 +35,7 @@ public class PasienController {
 		return restService.parsePasienRujukan(response);
 	}
 	
+
 	@RequestMapping("/getPasien")
 	public PasienRujukanDetail getPasien() throws ParseException {
 		String url = Setting.siApp+"/getPasien/1";

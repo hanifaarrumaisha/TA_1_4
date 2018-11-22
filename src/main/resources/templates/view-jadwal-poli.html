@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link href = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+	<link href = "https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class = "container-fluid">
+		<br>
+		<h2>Jadwal Poli</h2>
+	</div>
+	
+	<hr>
+	<div>
+		<table class="table table-striped table-bordered">
+     		<thead>
+     			<tr>	
+     				<th>Nama Poli</th>
+     				<th>Nama Dokter</th>
+     				<th>Hari</th>
+     				<th>Tanggal</th>
+     				<th>Jam Mulai</th>
+     				<th>Jam Selesai</th>
+     			</tr>
+     		</thead>
+     		
+     		<tbody>
+     			<tr  th:each  = "listJadwalPoli : ${listJadwalPoli}" >
+     				<td th:text="${listJadwalPoli.poli.nama}"></td>
+     				<td th:text="${mapDokter[__listJadwalPoli.id__].nama}"></td>
+     				<td th:text="${mapHari[__listJadwalPoli.id__].hari}"></td>
+     				<td th:text="${listJadwalPoli.tanggal}"></td>
+     				<td th:text="${listJadwalPoli.jamMulai}"></td>
+     				<td th:text="${listJadwalPoli.jamSelesai}"></td>
+     			</tr>
+     		</tbody>
+	    
+	    </table>
+		</div>   
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#tableJabatan').DataTable();
+	} );
+</script>
+</html>
