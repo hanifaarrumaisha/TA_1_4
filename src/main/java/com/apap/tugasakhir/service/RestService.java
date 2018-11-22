@@ -22,5 +22,7 @@ public interface RestService {
 	List<PasienRujukanDetail> parsePasienRujukan(String data) throws ParseException, JsonParseException, JsonMappingException, IOException;
 	
 	DokterDetail getDokter(int idDokter) throws ParseException;
+
+	List<DokterDetail> getAllDokter() throws ParseException;
 	
 }

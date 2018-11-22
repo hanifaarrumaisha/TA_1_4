@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.apap.tugasakhir.rest.DokterDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
@@ -41,5 +42,10 @@ public class PasienController {
 		String url = Setting.siApp+"/getPasien/1";
 		String response = restService.getRest(url);
 		return restService.parsePasien(response);
+	}
+	
+	@RequestMapping("/getAllDokter")
+	public List<DokterDetail> getAllDOkter() throws ParseException{
+		return restService.getAllDokter();
 	}
 }
