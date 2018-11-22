@@ -1,5 +1,6 @@
 package com.apap.tugasakhir.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
@@ -10,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.rest.PasienDetail;
+import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.service.RestService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 @RestController
 @RequestMapping("/rawat-jalan/pasien")
@@ -19,23 +23,21 @@ public class PasienController {
 	@Autowired
 	RestTemplate restTemplate;
 	
+
 	@Autowired
 	RestService restService;
 	
-	@Bean
-	public RestTemplate rest() {
-		return new RestTemplate();
-	}
-	
+		
 	@RequestMapping("/getAllPasien")
-	public List<PasienDetail> getAllPasien() throws ParseException {
-		String url = Setting.siApp+"/getAllPasienRawatJalan/";
+	public List<PasienRujukanDetail> getAllPasien() throws ParseException, JsonParseException, JsonMappingException, IOException {
+		String url = Setting.siApp+"/4/getAllPasienRawatJalan/";
 		String response = restService.getRest(url);
-		return restService.parseAllPasien(response);
+		return restService.parsePasienRujukan(response);
 	}
 	
+
 	@RequestMapping("/getPasien")
-	public PasienDetail getPasien() throws ParseException {
+	public PasienRujukanDetail getPasien() throws ParseException {
 		String url = Setting.siApp+"/getPasien/1";
 		String response = restService.getRest(url);
 		return restService.parsePasien(response);
