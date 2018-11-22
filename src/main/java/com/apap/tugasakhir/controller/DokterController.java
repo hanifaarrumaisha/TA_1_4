@@ -33,7 +33,7 @@ public class DokterController {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		headers.add("user-agent", "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36");
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		String path = Setting.dokterUrl + "/getDokter/" + Long.parseLong(id);
+		String path = Setting.siApp + "/getDokter/" + Long.parseLong(id);
 		Object response = restTemplate.exchange(path, HttpMethod.GET, entity, Object.class);
 		System.out.println(response);
 		return response;
