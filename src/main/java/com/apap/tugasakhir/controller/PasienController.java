@@ -40,4 +40,6 @@ public class PasienController {
 		String response = restService.getRest(url);
 		return restService.parsePasien(response);
 	}
+	
+	
 }
