@@ -26,6 +26,10 @@ public class ObatModel implements Serializable {
 	@Column (name = "nama", nullable = false)
 	private String nama;
 	
+	@NotNull
+	@Column (name = "jumlah", nullable = false, unique = true)
+	private int jumlah;
+	
 	public int getId() {
 		return id;
 	}
@@ -58,10 +62,6 @@ public class ObatModel implements Serializable {
 		this.listPenanganan = listPenanganan;
 	}
 
-	@NotNull
-	@Column (name = "jumlah", nullable = false, unique = true)
-	private int jumlah;
-	
 	@OneToMany(mappedBy = "obat", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<PenangananModel> listPenanganan;
 }

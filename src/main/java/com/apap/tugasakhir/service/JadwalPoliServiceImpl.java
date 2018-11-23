@@ -33,6 +33,8 @@ public class JadwalPoliServiceImpl implements JadwalPoliService	 {
 		// TODO Auto-generated method stub
 		return jadwalPoliDb.findAll();
 	}
+	
+	
 
 	@Override
 	public Map<Integer, DokterDetail> getDoctor() throws ParseException {
@@ -44,5 +46,7 @@ public class JadwalPoliServiceImpl implements JadwalPoliService	 {
 		}
 		return mapDokter;
 	}
+	
+//	public List<DokterDetail> viewDokterAvailble
 	
 }
