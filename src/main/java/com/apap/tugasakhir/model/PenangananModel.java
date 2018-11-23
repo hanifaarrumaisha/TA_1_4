@@ -26,8 +26,12 @@ public class PenangananModel implements Serializable {
 	@Column (name = "deskripsi", nullable = false)
 	private String deskripsi;
 	
+	@Size(max = 255)
+	@Column(name = "jenis_pemeriksaan", nullable = true)
+	private Integer jenisPemeriksaan;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "obat", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "obat", referencedColumnName = "id", nullable = true)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private ObatModel obat;

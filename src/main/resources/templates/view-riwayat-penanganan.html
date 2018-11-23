@@ -17,6 +17,7 @@
 		            <th>Nama Pasien</th>
 	           	  	<th>Poli</th>
 	           	  	<th>Waktu</th>
+	           	  	<th>Jenis Penanganan</th>
 	           	  	<th>Deskripsi</th>
 		        </tr>
 		    </thead>
@@ -25,7 +26,8 @@
 		            <td th:text="${penanganan.rujukanRawatJalan.idPasien}"></td>
           		    <td th:text="${penanganan.rujukanRawatJalan.namaPasien}"></td>
           		    <td th:text="${penanganan.rujukanRawatJalan.jadwalPoli.poli.nama}"></td>
-         		    <td th:text="${penanganan.waktu}"></td>  
+         		    <td th:text="${penanganan.waktu}"></td>
+         		    <td th:text="${penanganan.obat} ? ${penanganan.obat.nama} : 'Pemeriksaan Lab'"></td>
          		    <td th:text="${penanganan.deskripsi}"></td>
 		        </tr>
 		    </tbody>
