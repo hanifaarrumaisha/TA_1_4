@@ -29,16 +29,20 @@ public class JadwalPoliController {
 	
 	
 	@RequestMapping(value = "/tambah" , method = RequestMethod.GET)
-	private String addJadwalPoli (Model model) {
+	private String addJadwalPoli (Model model) throws ParseException {
+		List<JadwalPoliModel> listJadwalPoli = jadwalPoliService.getAllJadwalPoli();
+		Map<Integer, DokterDetail> mapDokter = jadwalPoliService.getDoctor();
+		model.addAttribute("listJadwalPoli", listJadwalPoli);
+		model.addAttribute("mapDokter", mapDokter);
 		model.addAttribute("jadwalPoli", new JadwalPoliModel());
-		return "addJadwalPoli";
+		return "add-jadwal-poli";
 	}
 	
 	@RequestMapping(value = "/tambah" , method = RequestMethod.POST)
 	private String addJadwalSubmit(@ModelAttribute JadwalPoliModel jadwalPoli , Model model) {
 		jadwalPoliService.addJadwalPoli(jadwalPoli);
 		model.addAttribute("title", "Add Successfull");
-		return "add";
+		return "add-success";
 	}
 	
 	@RequestMapping(value = "/" , method = RequestMethod.GET)
