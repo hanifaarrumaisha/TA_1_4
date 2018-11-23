@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Home</title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="col-md-6">
+				<div class="card">
+					<div class="card-header">
+						Ubah Status Pasien
+					</div>
+					<form th:action="@{/rawat-jalan/pasien/ubah}" th:object="${pasien}" method="POST">
+						<div class="card-body">
+							<label>Ubah Status:</label>
+								<input hidden th:field="*{id}" th:value="*{id}">
+								<input hidden th:field="*{nama}" th:value="*{nama}">
+								<input hidden th:field="*{tanggalRujukan}" th:value="*{tanggalRujukan}">
+								<input hidden th:field="*{statusPasien.id}" th:value="*{statusPasien.id}">
+								<input hidden th:field="*{statusPasien.jenis}" th:value="*{statusPasien.jenis}">
+								<input hidden th:field="*{poliRujukan.id}" th:value="*{poliRujukan.id}">
+								<input hidden th:field="*{poliRujukan.nama}" th:value="*{poliRujukan.nama}">
+								
+								
+								<select  class="form-control" required="required" th:name="status">
+							     	<option value="7" >Mendaftar di Rawat Jalan</option>
+							     	<option value="8">Berada di Rawat Jalan</option>
+							     	<option value="9">Selesai di Rawat Jalan</option>
+						    	</select>
+							<p></p>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+	
+</body>
+
+
+</html>
+
+<script th:inline="javascript">
+ var message = /*[[${message}]]*/ 'default';
+ if (message!=null){
+  alert(message);
+ }
+</script>
+
