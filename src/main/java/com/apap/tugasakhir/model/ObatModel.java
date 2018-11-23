@@ -26,38 +26,6 @@ public class ObatModel implements Serializable {
 	@Column (name = "nama", nullable = false)
 	private String nama;
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNama() {
-		return nama;
-	}
-
-	public void setNama(String nama) {
-		this.nama = nama;
-	}
-
-	public int getJumlah() {
-		return jumlah;
-	}
-
-	public void setJumlah(int jumlah) {
-		this.jumlah = jumlah;
-	}
-
-	public List<PenangananModel> getListPenanganan() {
-		return listPenanganan;
-	}
-
-	public void setListPenanganan(List<PenangananModel> listPenanganan) {
-		this.listPenanganan = listPenanganan;
-	}
-
 	@NotNull
 	@Column (name = "jumlah", nullable = false, unique = true)
 	private int jumlah;
