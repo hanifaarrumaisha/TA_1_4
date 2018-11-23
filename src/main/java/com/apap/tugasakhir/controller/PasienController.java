@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import com.apap.tugasakhir.rest.PasienDetail;
+import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.service.RestService;
@@ -26,6 +28,8 @@ public class PasienController {
 
 	@Autowired
 	RestService restService;
+	
+	RujukanRawatJalanModel rujukanRawatJalanModel;
 	
 		
 	@RequestMapping("/getAllPasien")
