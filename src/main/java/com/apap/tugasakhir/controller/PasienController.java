@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
+import com.apap.tugasakhir.rest.DokterDetail;
+import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.service.RestService;
@@ -47,5 +49,9 @@ public class PasienController {
 		return restService.parsePasien(response);
 	}
 	
-	
+
+	@RequestMapping("/getAllDokter")
+	public List<DokterDetail> getAllDOkter() throws ParseException{
+		return restService.getAllDokter();
+	}
 }

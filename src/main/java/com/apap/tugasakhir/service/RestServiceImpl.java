@@ -158,6 +158,36 @@ public class RestServiceImpl implements RestService{
         
         return dokter;
 	}
-
+	
+	@Override
+	public List<DokterDetail> getAllDokter() throws ParseException {
+		List<DokterDetail> listDokter = new ArrayList<DokterDetail>();
+		
+		String response = restTemplate.getForObject(Setting.siApp+"/4/getAllDokter/", String.class);
+		
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(response);
+		System.out.println("BISA");
+		JSONArray res = (JSONArray) json.get("result");
+		System.out.println(res);
+		
+		Iterator i = res.iterator();
+		
+		System.out.println("characters: "); 
+		while (i.hasNext()) { 
+		
+			DokterDetail dokter = new DokterDetail();
+			JSONObject dokterJson = (JSONObject) i.next();
+	        System.out.println(response);
+	        String nama = (String) dokterJson.get("nama");
+	        long id_dokter = (long) dokterJson.get("id");
+	        dokter.setId((int)id_dokter);
+	        dokter.setNama(nama);
+	        System.out.println(nama);
+	        System.out.println(id_dokter);
+	        listDokter.add(dokter);
+		}
+        return listDokter;
+	}
 
 }
