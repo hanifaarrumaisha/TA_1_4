@@ -23,11 +23,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class PasienController {
 	@Autowired
 	RestTemplate restTemplate;
-	
 
 	@Autowired
 	RestService restService;
-	
 		
 	@RequestMapping("/getAllPasien")
 	public List<PasienRujukanDetail> getAllPasien() throws ParseException, JsonParseException, JsonMappingException, IOException {
@@ -36,7 +34,6 @@ public class PasienController {
 		return restService.parsePasienRujukan(response);
 	}
 	
-
 	@RequestMapping("/getPasien")
 	public PasienRujukanDetail getPasien() throws ParseException {
 		String url = Setting.siApp+"/getPasien/1";
