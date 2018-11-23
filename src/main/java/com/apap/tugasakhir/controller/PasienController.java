@@ -40,7 +40,7 @@ public class PasienController {
 		String response = restService.getRest(url);
 		return restService.parsePasien(response);
 	}
-	
+
 	@RequestMapping("/getAllDokter")
 	public List<DokterDetail> getAllDOkter() throws ParseException{
 		return restService.getAllDokter();
