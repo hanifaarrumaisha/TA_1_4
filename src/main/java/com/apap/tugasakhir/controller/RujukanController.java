@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
-import com.apap.tugasakhir.repository.RujukanDb;
+import com.apap.tugasakhir.repository.RujukanRawatJalanDb;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.service.RestService;
@@ -32,7 +32,7 @@ public class RujukanController {
 	private RujukanService rujukanService;
 	
 	@Autowired
-	private RujukanDb rujukanDb;
+	private RujukanRawatJalanDb rujukanDb;
 	
 	
 	@RequestMapping(value= "/rawat-jalan/pasien/{idRujukan}", method = RequestMethod.GET)

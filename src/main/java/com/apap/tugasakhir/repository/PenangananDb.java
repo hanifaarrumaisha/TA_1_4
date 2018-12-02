@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.apap.tugasakhir.model.PenangananModel;
 
+@Repository
 public interface PenangananDb extends JpaRepository<PenangananModel, Integer>{
 
 }

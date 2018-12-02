@@ -66,7 +66,6 @@ public class ApiController {
 	        if (allDokter.size() < 1 || bindingResult.hasErrors()) {
 	            response.setStatus(500);
 	            response.setMessage("error data");
-	           
 	        } else {
 	        	for(DokterDetail dokter : allDokter) {
 	        		if(jadwalPoliDb.findByIdAndTanggal(dokter.getId(), tanggal.getTanggal()).size() >0) {
