@@ -55,6 +55,9 @@ public class JadwalPoliController {
 				mapHari.put(jadwalPoli.getPoli().getId(), hariPoli);
 			}
 		}
+		
+//		System.out.println("Ini nama poli" + listJadwalPoli.get(0).getPoli().getNama());
+//		System.out.println("Ini nama dokter" + mapDokter.get(0).getNama());
 		model.addAttribute("mapHari", mapHari);
 		model.addAttribute("listJadwalPoli", listJadwalPoli);
 		model.addAttribute("mapDokter", mapDokter);

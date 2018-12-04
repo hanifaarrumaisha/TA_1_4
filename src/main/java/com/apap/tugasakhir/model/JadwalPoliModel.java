@@ -35,11 +35,11 @@ public class JadwalPoliModel implements Serializable {
 	
 	@NotNull
 	@Column (name = "jam_mulai", nullable = false)
-	private Time jamMulai;
+	private String jamMulai;
 	
 	@NotNull
 	@Column (name = "jam_selesai", nullable = false)
-	private Time jamSelesai;
+	private String jamSelesai;
 	
 	@NotNull
 	@Column (name = "id_dokter", nullable = false)
@@ -86,19 +86,21 @@ public class JadwalPoliModel implements Serializable {
 		this.tanggal = tanggal;
 	}
 
-	public Time getJamMulai() {
+	
+
+	public String getJamMulai() {
 		return jamMulai;
 	}
 
-	public void setJamMulai(Time jamMulai) {
+	public void setJamMulai(String jamMulai) {
 		this.jamMulai = jamMulai;
 	}
 
-	public Time getJamSelesai() {
+	public String getJamSelesai() {
 		return jamSelesai;
 	}
 
-	public void setJamSelesai(Time jamSelesai) {
+	public void setJamSelesai(String jamSelesai) {
 		this.jamSelesai = jamSelesai;
 	}
 

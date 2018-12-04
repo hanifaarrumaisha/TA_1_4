@@ -42,6 +42,7 @@ public class JadwalPoliServiceImpl implements JadwalPoliService	 {
 		List<JadwalPoliModel> listJadwalPoli = jadwalPoliDb.findAll();
 		for (JadwalPoliModel jadwalPoli : listJadwalPoli){
 			DokterDetail dokter = restService.getDokter(jadwalPoli.getIdDokter());
+			System.out.println("Cek dokter "+dokter.getNama());
 			mapDokter.put(jadwalPoli.getPoli().getId(), dokter);
 		}
 		return mapDokter;
