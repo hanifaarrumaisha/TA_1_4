@@ -1,6 +1,6 @@
 package com.apap.tugasakhir.model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,7 +42,6 @@ public class RujukanRawatJalanModel {
 	private String namaPasien;
 	
 	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "tanggal_rujuk", nullable = false)
 	private Date tanggalRujuk;
 	

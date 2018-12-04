@@ -8,5 +8,6 @@ import com.apap.tugasakhir.rest.PasienRujukanDetail;
 public interface RujukanService {
 	RujukanRawatJalanModel getRujukanById(Long id);
 	void changeRujukan(PasienRujukanDetail pasien, String status) throws ParseException;
+	void validateRujukan(PasienRujukanDetail pasien);
 
 }

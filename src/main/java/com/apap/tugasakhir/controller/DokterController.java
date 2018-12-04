@@ -1,24 +1,15 @@
 package com.apap.tugasakhir.controller;
-import java.util.Arrays;
-
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import com.apap.tugasakhir.rest.Setting;
-import com.apap.tugasakhir.service.RestService;
 
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.json.simple.*;
-import com.apap.tugasakhir.rest.*;
+import com.apap.tugasakhir.rest.DokterDetail;
+import com.apap.tugasakhir.service.RestService;
 
 @RestController
 @RequestMapping("/dokter")
@@ -26,6 +17,7 @@ public class DokterController {
 	@Autowired
 	RestService restService;
 	
+	@Lazy
 	@Autowired
 	RestTemplate restTemplate;
 	

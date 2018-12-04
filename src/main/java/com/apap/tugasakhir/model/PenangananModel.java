@@ -26,8 +26,12 @@ public class PenangananModel implements Serializable {
 	@Column (name = "deskripsi", nullable = false)
 	private String deskripsi;
 	
+	@Size(max = 255)
+	@Column(name = "jenis_pemeriksaan", nullable = true)
+	private Integer jenisPemeriksaan;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "obat", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "obat", referencedColumnName = "id", nullable = true)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private ObatModel obat;
@@ -38,6 +42,38 @@ public class PenangananModel implements Serializable {
 	@JsonIgnore
 	private RujukanRawatJalanModel rujukanRawatJalan;
 	
+	public Timestamp getWaktu() {
+		return waktu;
+	}
+
+	public void setWaktu(Timestamp waktu) {
+		this.waktu = waktu;
+	}
+
+	public String getDeskripsi() {
+		return deskripsi;
+	}
+
+	public void setDeskripsi(String deskripsi) {
+		this.deskripsi = deskripsi;
+	}
+
+	public ObatModel getObat() {
+		return obat;
+	}
+
+	public void setObat(ObatModel obat) {
+		this.obat = obat;
+	}
+
+	public RujukanRawatJalanModel getRujukanRawatJalan() {
+		return rujukanRawatJalan;
+	}
+
+	public void setRujukanRawatJalan(RujukanRawatJalanModel rujukanRawatJalan) {
+		this.rujukanRawatJalan = rujukanRawatJalan;
+	}
+
 	public int getId() {
 		return id;
 	}
