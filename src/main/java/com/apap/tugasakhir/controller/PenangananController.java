@@ -1,7 +1,9 @@
 package com.apap.tugasakhir.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.repository.PenangananDb;
 import com.apap.tugasakhir.rest.DokterDetail;
+import com.apap.tugasakhir.rest.JenisPemeriksaanDetail;
 import com.apap.tugasakhir.service.PenangananService;
 import com.apap.tugasakhir.service.RestService;
 
@@ -32,9 +35,14 @@ public class PenangananController {
 	private RestService restService;
 	
 	@GetMapping()
-	public String viewAllPenanganan(Model model) {
+	public String viewAllPenanganan(Model model) throws ParseException {
 		List<PenangananModel> listPenanganan = penangananService.getPenangananList();
+		
+		Map<Integer, String> mapPemeriksaan = penangananService.getDataPemeriksaan();
 	
+		
+		
+		model.addAttribute("mapPemeriksaan", mapPemeriksaan);
 		model.addAttribute("listPenanganan", listPenanganan);
 		
 		return "view-riwayat-penanganan";
@@ -56,6 +64,9 @@ public class PenangananController {
 		redirectAtt.addFlashAttribute("message", message);
 		return "redirect:/rawat-jalan/pasien/penanganan/tambah";
 	}
-
+	
+	//@RequestMapping(value = "/coba", method = RequestMethod.POST)
+	//private String mintaPeriksa(@ModelAttribute PenangananModel penanganan)
+	
 
 }

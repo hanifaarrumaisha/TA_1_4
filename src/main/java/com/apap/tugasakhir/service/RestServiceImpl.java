@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.rest.DokterDetail;
+import com.apap.tugasakhir.rest.JenisPemeriksaanDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.PoliRujukanDetail;
@@ -189,5 +190,35 @@ public class RestServiceImpl implements RestService{
 		}
         return listDokter;
 	}
-
+	
+	@Override
+	public List<JenisPemeriksaanDetail> getAllJenisPemeriksaan() throws ParseException{
+		List<JenisPemeriksaanDetail> listPemeriksaan = new ArrayList<JenisPemeriksaanDetail>();
+		
+		String response = restTemplate.getForObject(Setting.siLab+"/lab/pemeriksaan/", String.class);
+		
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(response);
+		System.out.println("BISA");
+		JSONArray res = (JSONArray) json.get("result");
+		System.out.println(res);
+		
+		Iterator i = res.iterator();
+		
+		System.out.println("characters: "); 
+		while (i.hasNext()) { 
+		
+			JenisPemeriksaanDetail pemeriksaan = new JenisPemeriksaanDetail();
+			JSONObject pemeriksaanJson = (JSONObject) i.next();
+	        System.out.println(response);
+	        String nama = (String) pemeriksaanJson.get("nama");
+	        long id_pemeriksaan = (long) pemeriksaanJson.get("id");
+	        pemeriksaan.setId((int)id_pemeriksaan);
+	        pemeriksaan.setNama(nama);
+	        System.out.println(nama);
+	        System.out.println(id_pemeriksaan);
+	        listPemeriksaan.add(pemeriksaan);
+		}
+        return listPemeriksaan;
+	}
 }

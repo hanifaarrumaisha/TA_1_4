@@ -1,8 +1,11 @@
 package com.apap.tugasakhir.controller;
+import java.util.List;
+
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +35,12 @@ public class DokterController {
 		int id_dokter = Integer.parseInt(id);
 		return restService.getDokter(id_dokter);
 
+	}
+	
+	@GetMapping("/getAllDokter")
+	public List<DokterDetail> getAllDokter() throws ParseException{
+		
+		return restService.getAllDokter();
 	}
 	
 //	@GetMapping()
