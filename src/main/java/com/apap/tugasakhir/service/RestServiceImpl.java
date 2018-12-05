@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.apap.tugasakhir.rest.BaseResponse;
 import com.apap.tugasakhir.rest.DokterDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
@@ -22,8 +23,6 @@ import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.rest.StatusPasienDetail;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class RestServiceImpl implements RestService{
@@ -188,6 +187,13 @@ public class RestServiceImpl implements RestService{
 	        listDokter.add(dokter);
 		}
         return listDokter;
+	}
+	
+	@Override
+	public PasienRujukanDetail updateStatusPasien(PasienRujukanDetail pasien) {
+		BaseResponse response = restTemplate.postForObject(Setting.siApp+"/4/updatePasien", pasien, BaseResponse.class);
+		System.out.println(response.getMessage());
+		return (PasienRujukanDetail) response.getResult();
 	}
 
 }
