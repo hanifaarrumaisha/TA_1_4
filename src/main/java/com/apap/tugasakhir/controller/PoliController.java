@@ -24,13 +24,13 @@ public class PoliController {
 	private String addPoli(Model model) {
 		model.addAttribute("poli", new PoliModel());
 		
-		return "add-poli"; //belum dibuat
+		return "add-poli"; //belum ditest
 	}
 	@RequestMapping(value="/rawat-jalan/poli/tambah", method =RequestMethod.POST)
 	private String addPoliSubmit(@ModelAttribute PoliModel poli, Model model) {
 		poliService.addPoli(poli);
 		model.addAttribute("poli", poli);
-		return "add"; //belum dibuat
+		return "add"; //belum di test
 	}
 	@RequestMapping("/rawat-jalan/poli")
 	public String viewPoli(Model model) {
@@ -43,13 +43,13 @@ public class PoliController {
 		PoliModel poli = poliService.getPoliById(id_poli);
 		tempId = id_poli;
 		model.addAttribute("poli", poli);
-		return "ubah-poli"; //belum dibuat
+		return "ubah-poli"; //belum ditest
 	}
 	@RequestMapping(value = "/rawat-jalan/poli/ubah", method = RequestMethod.POST)
 	private String updatePoliSubmit(@ModelAttribute PoliModel poli, Model model) {
 		poli.setId(tempId);
 		poliService.updatePoli(poli);
 		model.addAttribute("poli", poli);
-		return "ubah-poli-success"; //belum dibuat
+		return "ubah-poli-success"; //belum ditest
 	}
 }

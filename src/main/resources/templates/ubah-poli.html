@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+	<h2>Ubah Poli</h2>
+	<form action="@{/rawat-jalan/poli/ubah}" th:object="${poli}" method="POST">
+		<input type="hidden" th:value="${poli.id}" name="id_poli"></input>
+		<div class="form-group row">
+			<label>Nama: </label>
+			<div class="col-sm-9">
+				<input type="text" th:value="${poli.nama}" name="nama" class="form-control" id="nama" />
+			</div>
+		</div>
+		<div class="form-group row">
+			<label>Deskripsi Poli: </label>
+			<input type="text" th:value="${poli.deskripsi}" name="deskripsi" class="form-control" id="deskripsi"/>
+		</div>
+		
+	      <button type="submit">Submit</button>
+		
+	</form>
+	</div>
+</body>
+</html>
