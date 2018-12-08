@@ -7,6 +7,7 @@ import java.util.Map;
 import org.json.simple.parser.ParseException;
 
 import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.rest.PemeriksaanDetail;
 
 public interface PenangananService {
 
@@ -19,6 +20,14 @@ public interface PenangananService {
 
 
 	Map<Integer, String> getDataPemeriksaan() throws ParseException;
+
+
+
+	String kirimPenanganan();
+
+
+
+	//String kirimPenanganan();
 
 
 
