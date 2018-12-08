@@ -190,10 +190,10 @@ public class RestServiceImpl implements RestService{
 	}
 	
 	@Override
-	public PasienRujukanDetail updateStatusPasien(PasienRujukanDetail pasien) {
+	public void updateStatusPasien(PasienRujukanDetail pasien) {
 		BaseResponse response = restTemplate.postForObject(Setting.siApp+"/4/updatePasien", pasien, BaseResponse.class);
-		System.out.println(response.getMessage());
-		return (PasienRujukanDetail) response.getResult();
+		System.out.println(response.getResult());
+		
 	}
 
 }

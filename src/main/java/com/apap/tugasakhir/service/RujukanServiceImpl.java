@@ -45,7 +45,7 @@ public class RujukanServiceImpl implements RujukanService{
 			pasien.getStatusPasien().setJenis(status);
 			//manggil API dari siAppointment untuk update status
 			//restService.updateStatusPasien(pasien);
-			System.out.println(restService.updateStatusPasien(pasien));
+			restService.updateStatusPasien(pasien);
 			System.out.println("masuk update status berhasil");
 			System.out.println(pasien.getStatusPasien().getId());
 		}

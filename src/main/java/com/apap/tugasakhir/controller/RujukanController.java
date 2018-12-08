@@ -78,5 +78,7 @@ public class RujukanController {
 		redirectAtt.addFlashAttribute("message", message);
 		return "redirect:/rawat-jalan/pasien/ubah?idPasien="+pasien.getId();
 	}
+	
+	
 
 }

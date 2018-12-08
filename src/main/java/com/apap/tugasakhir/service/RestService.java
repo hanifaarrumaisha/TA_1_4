@@ -25,6 +25,6 @@ public interface RestService {
 
 	List<DokterDetail> getAllDokter() throws ParseException;
 
-	PasienRujukanDetail updateStatusPasien(PasienRujukanDetail pasien);
+	void updateStatusPasien(PasienRujukanDetail pasien);
 	
 }
