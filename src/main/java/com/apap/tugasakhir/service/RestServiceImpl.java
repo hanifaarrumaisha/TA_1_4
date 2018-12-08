@@ -153,8 +153,8 @@ public class RestServiceImpl implements RestService{
         long id_dokter = (long) result.get("id");
         dokter.setId((int)id_dokter);
         dokter.setNama(nama);
-        System.out.println(nama);
-        System.out.println(id_dokter);
+        System.out.println(dokter.getNama());
+        System.out.println(dokter.getId());
         
         return dokter;
 	}
@@ -182,8 +182,8 @@ public class RestServiceImpl implements RestService{
 	        long id_dokter = (long) dokterJson.get("id");
 	        dokter.setId((int)id_dokter);
 	        dokter.setNama(nama);
-	        System.out.println(nama);
-	        System.out.println(id_dokter);
+	        System.out.println(dokter.getNama());
+	        System.out.println(dokter.getId());
 	        listDokter.add(dokter);
 		}
         return listDokter;
