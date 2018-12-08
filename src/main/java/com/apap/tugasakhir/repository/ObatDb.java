@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.apap.tugasakhir.model.ObatModel;
 
+@Repository
 public interface ObatDb extends JpaRepository<ObatModel, Integer>{
 	public Optional<ObatModel> findByNama(String nama);
 }

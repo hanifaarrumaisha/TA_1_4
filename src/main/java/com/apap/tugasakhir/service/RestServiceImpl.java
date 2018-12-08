@@ -176,7 +176,6 @@ public class RestServiceImpl implements RestService{
 		
 		System.out.println("characters: "); 
 		while (i.hasNext()) { 
-		
 			DokterDetail dokter = new DokterDetail();
 			JSONObject dokterJson = (JSONObject) i.next();
 	        System.out.println(response);
