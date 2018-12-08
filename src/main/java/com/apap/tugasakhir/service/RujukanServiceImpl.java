@@ -133,11 +133,6 @@ public class RujukanServiceImpl implements RujukanService {
 		String responseApp = restService.getRest(urlApp);
 		System.out.println(responseApp);
 		ArrayList<PasienRujukanDetail> listPasien = (ArrayList<PasienRujukanDetail>) restService.parseListPasien(responseApp);
-		System.out.println("coba nama poli rujukan: " + listPasien.get(0).getPoliRujukan().getNama());
-		System.out.println("coba nama poli rujukan: " + listPasien.get(1).getPoliRujukan().getNama());
-		System.out.println("coba nama poli rujukan: " + listPasien.get(2).getPoliRujukan().getNama());
-		System.out.println("coba nama poli rujukan: " + listPasien.get(3).getPoliRujukan().getNama());
-		System.out.println("coba nama poli rujukan: " + listPasien.get(4).getPoliRujukan().getNama());
 		output.add(mapRujukan);
 		output.add(listPasien);
 		return output;
