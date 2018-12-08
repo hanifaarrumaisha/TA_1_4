@@ -18,16 +18,15 @@
 					<form th:action="@{/rawat-jalan/pasien/ubah}" th:object="${pasien}" method="POST">
 						<div class="card-body">
 							<label>Ubah Status:</label>
-								<input hidden th:field="*{id}" th:value="*{id}">
+								<input hidden th:field="*{id}" th:value="${pasien.id}">
 								<input hidden th:field="*{idPasien}" th:value="*{idPasien}">
 								<input hidden th:field="*{namaPasien}" th:value="*{namaPasien}">
 								<input hidden th:field="*{tanggalRujuk}" th:value="*{tanggalRujuk}">
 								<input hidden th:field="*{jadwalPoli}" th:value="*{jadwalPoli}">
 								<input hidden th:name="statusLama" th:value="${statusLama}">
 								
-								
-								<select  class="form-control" required="required" th:field="*{status}" th:value="*{status}" name=status>
-							     	<option value=1 >Mendaftar Poli</option>
+								<select  class="form-control" required="required" th:field="*{status}" th:value="*{status}" name="status">
+							     	<option value=1>Mendaftar Poli</option>
 							     	<option value=2>Berada di Poli</option>
 							     	<option value=3>Selesai</option>
 						    	</select>

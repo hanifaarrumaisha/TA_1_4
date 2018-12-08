@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public interface RujukanService {
 	RujukanRawatJalanModel getRujukanById(Long id);
 	void validateRujukan(PasienRujukanDetail pasien);
-	ArrayList<Object> getAllRujukan() throws ParseException, JsonParseException, JsonMappingException, IOException;
+	List<RujukanRawatJalanModel> getAllRujukan() throws ParseException, JsonParseException, JsonMappingException, IOException;
 	List<PasienRujukanDetail> getAllPasienRujukan()
 			throws ParseException, JsonParseException, JsonMappingException, IOException;
 	void changeRujukan(RujukanRawatJalanModel pasienRujuk, int statusLama) throws ParseException;

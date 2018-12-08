@@ -124,27 +124,8 @@ public class RujukanServiceImpl implements RujukanService {
 	}
 	
 	@Override
-	public ArrayList<Object> getAllRujukan() throws ParseException, JsonParseException, JsonMappingException, IOException{
-		List<RujukanRawatJalanModel> allRujukan = rujukanDb.findAll();
-		System.out.println("sizenya "+allRujukan.size());
-		ArrayList<Object> output = new ArrayList<Object>();
-		HashMap<Integer, RujukanRawatJalanModel> mapRujukan = new HashMap<Integer, RujukanRawatJalanModel>();
-		
-		String urlApp = Setting.siApp+"/getPasien?listId=";
-		
-		for (RujukanRawatJalanModel rujukan : allRujukan) {
-			mapRujukan.put(rujukan.getIdPasien(), rujukan);
-			urlApp = urlApp.concat(rujukan.getIdPasien()+",");
-			System.out.println(urlApp);
-		}
-		urlApp = urlApp.substring(0, urlApp.length()-1).concat("&resultType=List");
-		System.out.println(urlApp);
-		String responseApp = restService.getRest(urlApp);
-		System.out.println(responseApp);
-		ArrayList<PasienRujukanDetail> listPasien = (ArrayList<PasienRujukanDetail>) restService.parseListPasien(responseApp);
-		output.add(mapRujukan);
-		output.add(listPasien);
-		return output;
+	public List<RujukanRawatJalanModel> getAllRujukan() throws ParseException, JsonParseException, JsonMappingException, IOException{
+		return rujukanDb.findAll();
 	}
 
 }
