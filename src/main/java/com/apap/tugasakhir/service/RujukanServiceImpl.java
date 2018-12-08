@@ -20,6 +20,7 @@ import com.apap.tugasakhir.repository.PoliDb;
 import com.apap.tugasakhir.repository.RujukanRawatJalanDb;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
+import com.apap.tugasakhir.rest.StatusPasienDetail;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -51,21 +52,25 @@ public class RujukanServiceImpl implements RujukanService {
 	@Override
 	public void changeRujukan(PasienRujukanDetail pasien, String status) throws ParseException {
 		int idStatusNow = 0;
-//		RujukanRawatJalanModel rujukanChange = rujukanDb.getOne(id);
-		if (status.equalsIgnoreCase("Mendaftar di Rawat Jalan"))
-			idStatusNow = 7;
-		else if (status.equalsIgnoreCase("Berada di Rawat Jalan"))
-			idStatusNow = 8;
-		else if (status.equalsIgnoreCase("Selesai di Rawat Jalan"))
-			idStatusNow = 9;
-		if (pasien.getStatusPasien().getId() < idStatusNow && idStatusNow - pasien.getStatusPasien().getId() == 1) {
-			pasien.getStatusPasien().setId(idStatusNow);
-			pasien.getStatusPasien().setJenis(status);
+		RujukanRawatJalanModel pasienRujuk = rujukanDb.findByIdPasien((int) pasien.getId()).get();
+		if (status.equalsIgnoreCase("mendaftar poli"))
+			idStatusNow = 1;
+		else if (status.equalsIgnoreCase("berada di poli"))
+			idStatusNow = 2;
+		else if (status.equalsIgnoreCase("selesai"))
+			idStatusNow = 3;
+		if (pasienRujuk.getStatus() < idStatusNow && idStatusNow - pasienRujuk.getStatus() == 1) {
+//			pasien.getStatusPasien().setId(idStatusNow);
+//			pasien.getStatusPasien().setJenis(status);
+			pasienRujuk.setStatus(idStatusNow);
 			//manggil API dari siAppointment untuk update status
 			//restService.updateStatusPasien(pasien);
-			restService.updateStatusPasien(pasien);
 			System.out.println("masuk update status berhasil");
-			System.out.println(pasien.getStatusPasien().getId());
+			System.out.println(pasienRujuk.getStatus());
+		}
+		if (idStatusNow == 3) {
+			pasien.setStatusPasien(new StatusPasienDetail(9, "Selesai di Rawat Jalan"));
+			restService.updateStatusPasien(pasien);
 		}
 	}
 
@@ -81,7 +86,8 @@ public class RujukanServiceImpl implements RujukanService {
 				rujukan.setIdPasien(pasien.getId());
 				rujukan.setJadwalPoli(results.get(0));
 				rujukan.setNamaPasien(pasien.getNama());
-				rujukan.setStatus(pasien.getStatusPasien().getId());
+				rujukan.setStatus(1);
+				System.out.println("masuk update status");
 				rujukan.setListPenanganan(new ArrayList<PenangananModel>());
 				rujukan.setTanggalRujuk(pasien.getTanggalRujukan());
 				rujukanDb.save(rujukan);

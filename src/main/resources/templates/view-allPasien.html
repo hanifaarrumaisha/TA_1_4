@@ -38,7 +38,11 @@
      				<td th:text="${pasien.poliRujukan.nama}"></td>
      				<td th:text="${mapRujukan[__pasien.id__].jadwalPoli.tanggal}"></td>
      				<td th:text="${pasien.tanggalRujukan}"></td>
-     				<td th:text="${pasien.statusPasien.jenis}"></td>
+     				<td th:field="${mapRujukan[__pasien.id__].status}" th:switch="${mapRujukan[__pasien.id__].status}">
+     					<span th:case=1>Mendaftar Poli</span>
+     					<span th:case=2>Berada di Poli</span>
+     					<span th:case=3>Selesai</span>
+     				</td>
      				<td>
      					<a>Update Status</a>
      				</td>

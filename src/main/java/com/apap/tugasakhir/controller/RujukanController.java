@@ -62,13 +62,14 @@ public class RujukanController {
 	private String changeStatusSubmit(@RequestParam("status") String status, @ModelAttribute PasienRujukanDetail pasien, RedirectAttributes redirectAtt) throws ParseException{
 		System.out.println("status baru " + status);
 		System.out.println("id status pasien" + pasien.getId());
-		int statusLama = pasien.getStatusPasien().getId();
+		RujukanRawatJalanModel pasienRujukan = rujukanDb.findByIdPasien((int) pasien.getId()).get();
+		int statusLama = pasienRujukan.getStatus();
 		System.out.println(statusLama);
 		String statusPasien = pasien.getStatusPasien().getJenis();
 		System.out.println("status pasien baru: " + statusPasien);
 		rujukanService.changeRujukan(pasien, status);
 		String message = "";
-		if(statusLama == pasien.getStatusPasien().getId()) {
+		if(statusLama == pasienRujukan.getStatus()) {
 			message = "Status Pasien " + pasien.getNama() + " gagal diubah";
 		}
 		else {
