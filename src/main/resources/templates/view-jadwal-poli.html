@@ -28,18 +28,21 @@
      				<th>Tanggal</th>
      				<th>Jam Mulai</th>
      				<th>Jam Selesai</th>
+     				<th>Ubah Jadwal Dokter Poli</th>
      			</tr>
      		</thead>
      		
      		<tbody>
-     			<tr  th:each  = "listJadwalPoli : ${listJadwalPoli}" >
-     				<td th:text="${listJadwalPoli.poli.nama}"></td>
-     				<td th:text="${mapDokter[__listJadwalPoli.id__].nama}"></td>
-     				<td th:text="${mapDokter[__listJadwalPoli.id__].hari}"></td>
-     				<td th:text ="${listJadwalPoli.poli}">  </td>
-     				<td th:text="${listJadwalPoli.tanggal}"></td>
-     				<td th:text="${listJadwalPoli.jamMulai}"></td>
-     				<td th:text="${listJadwalPoli.jamSelesai}"></td>
+     			<tr  th:each  = "jadwalPoli : ${listJadwalPoli}" >
+     				<td th:text="${jadwalPoli.poli.nama}"></td>
+     				<td th:text="${mapDokter[__jadwalPoli.id__].nama}"></td>
+     				<td th:text="${mapHari[__jadwalPoli.poli.id__].hari}"></td>
+     				<td th:text="${jadwalPoli.tanggal}"></td>
+     				<td th:text="${jadwalPoli.jamMulai}"></td>
+     				<td th:text="${jadwalPoli.jamSelesai}"></td>
+     				<td>
+     					<a th:href="@{'/rawat-jalan/poli/jadwal/ubah/' + ${jadwalPoli.id}}" >Update Jadwal Poli</a>
+     				</td>
      			</tr>
      		</tbody>
 	    

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<link href = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+	<link href = "https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class = "container-fluid">
+		<br>
+		<h2>Update Jadwal Poli</h2>
+	</div>
+	
+	<hr>
+	<div>
+		<form th:action="@{'/rawat-jalan/poli/jadwal/ubah/' + ${jadwalPoli.id}}" th:object = "${jadwalPoli}" method = "POST">
+		
+					<label>Nama Poli</label>
+					<div class="col-lg-8">
+						<select name = "poli">
+						  <option th:each="jadwalPoli : ${listJadwalPoli}" 
+						          th:value="${jadwalPoli.poli.id}" 
+						          th:text="${jadwalPoli.poli.nama}"></option>
+						</select> 
+					</div>	
+					
+					<label>Nama Dokter</label>
+					<div class="col-lg-8">
+						<select name = "idDokter">
+						  <option th:each="dokter : ${listDokter}" 
+						          th:value="${dokter.id}" 
+						          th:text="${dokter.nama}"></option>
+						</select> 
+					</div>	
+				
+					<label>Tanggal</label>
+					<div class="col-lg-8">
+						<input type ="Date" name = "tanggal"/>
+					</div>
+					
+				
+					<label>Jam Mulai</label>
+					<div class="col-lg-8">
+						<input type ="time" name = "jamMulai"/>
+					</div>
+					
+					<label>Jam Selesai</label>
+					<div class="col-lg-8">
+						<input type ="time" name = "jamSelesai"/>
+					</div>
+					
+				
+					
+					
+			<button type = "submit" name="save" class = "btn btn-primary"> Update </button>
+		</form>
+	</div>
+</body>
+
+</html>
