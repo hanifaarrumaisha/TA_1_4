@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.rest.DokterDetail;
+import com.apap.tugasakhir.rest.PasienIGDDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
 import com.apap.tugasakhir.service.RestService;
@@ -38,17 +39,16 @@ public class PasienController {
 		// get from SiAppointment
 		String urlApp = Setting.siApp+"/4/getAllPasienRawatJalan/";
 		String responseApp = restService.getRest(urlApp);
-		ArrayList<PasienRujukanDetail> listPasien = (ArrayList<PasienRujukanDetail>) restService.parsePasienRujukan(responseApp);
-		for (PasienRujukanDetail pasien : listPasien) {
-			System.out.println("masuk");
-			rujukanService.validateRujukan(pasien);
-		}
+		ArrayList<PasienRujukanDetail> listPasien = (ArrayList<PasienRujukanDetail>) restService.parseListPasien(responseApp);
 		
 		// get from SiIGD
 		String urlIGD = Setting.siIGD+"/rujukan";
 		String responseIGD = restService.getRest(urlIGD);
-		// TODO buat parse data pasien dari IGD di RestService
-		// TODO ubah ke pasienRujukanDetail
+		ArrayList<PasienRujukanDetail> listPasienIGD = (ArrayList<PasienRujukanDetail>) restService.parsePasienIGD(responseIGD);
+		listPasien.addAll(listPasienIGD);
+		for (PasienRujukanDetail pasien : listPasien) {
+			rujukanService.validateRujukan(pasien);
+		}
 		return listPasien;
 	}
 	

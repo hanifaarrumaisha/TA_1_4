@@ -1,12 +1,24 @@
 package com.apap.tugasakhir.rest;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class StatusPasienDetail {
+	public StatusPasienDetail() {
+		super();
+	}
+
+	public StatusPasienDetail(int id, String jenis) {
+		super();
+		this.id = id;
+		this.jenis = jenis;
+	}
+
 	@JsonProperty("id")
 	private int id;
 	
 	@JsonProperty("jenis")
+	@JsonIgnore
 	private String jenis;
 
 	public int getId() {

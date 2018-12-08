@@ -3,6 +3,15 @@ package com.apap.tugasakhir.rest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PoliRujukanDetail {
+	
+	public PoliRujukanDetail(int id, String nama) {
+		super();
+		this.id = id;
+		this.nama = nama;
+	}
+	public PoliRujukanDetail() {
+		super();
+	}
 	@JsonProperty("id")
 	private int id;
 	
