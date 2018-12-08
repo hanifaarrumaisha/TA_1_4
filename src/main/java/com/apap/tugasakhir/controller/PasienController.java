@@ -35,7 +35,7 @@ public class PasienController {
 	
 	RujukanRawatJalanModel rujukanRawatJalanModel;
 		
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String getAllPasien(Model model) throws ParseException, JsonParseException, JsonMappingException, IOException {
 		rujukanService.getAllPasienRujukan();
 		ArrayList<Object> output = (ArrayList<Object>) rujukanService.getAllRujukan();

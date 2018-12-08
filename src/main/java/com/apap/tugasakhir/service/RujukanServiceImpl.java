@@ -50,25 +50,28 @@ public class RujukanServiceImpl implements RujukanService {
 	}
 
 	@Override
-	public void changeRujukan(PasienRujukanDetail pasien, String status) throws ParseException {
-		int idStatusNow = 0;
-		RujukanRawatJalanModel pasienRujuk = rujukanDb.findByIdPasien((int) pasien.getId()).get();
-		if (status.equalsIgnoreCase("mendaftar poli"))
-			idStatusNow = 1;
-		else if (status.equalsIgnoreCase("berada di poli"))
-			idStatusNow = 2;
-		else if (status.equalsIgnoreCase("selesai"))
-			idStatusNow = 3;
-		if (pasienRujuk.getStatus() < idStatusNow && idStatusNow - pasienRujuk.getStatus() == 1) {
+	public void changeRujukan(RujukanRawatJalanModel pasienRujuk, int statusLama) throws ParseException {
+//		int idStatusNow = 0;
+//		if (status.equalsIgnoreCase("mendaftar poli"))
+//			idStatusNow = 1;
+//		else if (status.equalsIgnoreCase("berada di poli"))
+//			idStatusNow = 2;
+//		else if (status.equalsIgnoreCase("selesai"))
+//			idStatusNow = 3;
+		if (pasienRujuk.getStatus() > statusLama && pasienRujuk.getStatus() - statusLama == 1) {
 //			pasien.getStatusPasien().setId(idStatusNow);
-//			pasien.getStatusPasien().setJenis(status);
-			pasienRujuk.setStatus(idStatusNow);
+//			pasien.getStatusPasien().setJenis(status)
 			//manggil API dari siAppointment untuk update status
 			//restService.updateStatusPasien(pasien);
+			rujukanDb.save(pasienRujuk);
 			System.out.println("masuk update status berhasil");
 			System.out.println(pasienRujuk.getStatus());
+		}else {
+			pasienRujuk.setStatus(statusLama);
 		}
-		if (idStatusNow == 3) {
+		if (pasienRujuk.getStatus() == 3) {
+			String response = restService.getRest(Setting.siApp+"/getPasien/"+pasienRujuk.getIdPasien());
+			PasienRujukanDetail pasien = restService.parsePasien(response);
 			pasien.setStatusPasien(new StatusPasienDetail(9, "Selesai di Rawat Jalan"));
 			restService.updateStatusPasien(pasien);
 		}
@@ -143,4 +146,5 @@ public class RujukanServiceImpl implements RujukanService {
 		output.add(listPasien);
 		return output;
 	}
+
 }
