@@ -24,32 +24,32 @@ public class PoliController {
 	private String addPoli(Model model) {
 		model.addAttribute("poli", new PoliModel());
 		
-		return "add-poli"; //belum ditest
+		return "add-poli"; //udah ditest
 	}
 	@RequestMapping(value="/rawat-jalan/poli/tambah", method =RequestMethod.POST)
 	private String addPoliSubmit(@ModelAttribute PoliModel poli, Model model) {
 		poliService.addPoli(poli);
 		model.addAttribute("poli", poli);
-		return "add"; //belum di test
+		return "add"; //udah di test
 	}
 	@RequestMapping("/rawat-jalan/poli")
 	public String viewPoli(Model model) {
 		List<PoliModel> archive = poliService.findAll();
 		model.addAttribute("listPoli", archive);
-		return "view-poli"; //belum dibuat
+		return "view-poli"; //udah
 	}
 	@RequestMapping(value = "/rawat-jalan/poli/ubah", method = RequestMethod.GET)
 	private String editPoli(@RequestParam("id_poli") Integer id_poli, Model model) {
 		PoliModel poli = poliService.getPoliById(id_poli);
 		tempId = id_poli;
 		model.addAttribute("poli", poli);
-		return "ubah-poli"; //belum ditest
+		return "ubah-poli"; //udah ditest
 	}
 	@RequestMapping(value = "/rawat-jalan/poli/ubah", method = RequestMethod.POST)
 	private String updatePoliSubmit(@ModelAttribute PoliModel poli, Model model) {
 		poli.setId(tempId);
 		poliService.updatePoli(poli);
 		model.addAttribute("poli", poli);
-		return "ubah-poli-success"; //belum ditest
+		return "ubah-poli-success"; //udah ditest
 	}
 }

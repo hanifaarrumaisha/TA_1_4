@@ -8,7 +8,7 @@
 <body>
 	<div class="container-fluid">
 	<h2>Ubah Poli</h2>
-	<form action="@{/rawat-jalan/poli/ubah}" th:object="${poli}" method="POST">
+	<form th:action="@{/rawat-jalan/poli/ubah}" th:object="${poli}" method="POST">
 		<input type="hidden" th:value="${poli.id}" name="id_poli"></input>
 		<div class="form-group row">
 			<label>Nama: </label>

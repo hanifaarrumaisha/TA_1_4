@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+</head>
+  <body>
+	
+	<h3 style="text-align:center">Daftar Poli</h3>
+	<br>
+    <div class="container">
+		<table id="table_id" class="display">
+			<thead>
+				<tr>
+					<th>Nama</th>
+					<th>Deskripsi</th>
+					<th>hari</th>
+				</tr>
+			</thead>
+				<tbody>
+					<tr th:each="poli : ${listPoli}">
+						<td th:text="${poli.nama}"></td>
+						<td th:text="${poli.deskripsi}"></td>
+						<td>
+							<div th:each="hari : ${poli.listHariPoli}">
+								<span th:text="'&#9679; ' + ${hari.hari}"></span>
+							</div>
+						</td>
+						
+					</tr>
+				</tbody>
+		</table>
+   </div>
+</body>
+</html>
