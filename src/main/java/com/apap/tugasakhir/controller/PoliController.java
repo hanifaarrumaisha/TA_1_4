@@ -39,7 +39,7 @@ public class PoliController {
 		return "view-poli"; //udah
 	}
 	@RequestMapping(value = "/rawat-jalan/poli/ubah", method = RequestMethod.GET)
-	private String editPoli(@RequestParam("id_poli") Integer id_poli, Model model) {
+	private String editPoli(@RequestParam("id") Integer id_poli, Model model) {
 		PoliModel poli = poliService.getPoliById(id_poli);
 		tempId = id_poli;
 		model.addAttribute("poli", poli);
