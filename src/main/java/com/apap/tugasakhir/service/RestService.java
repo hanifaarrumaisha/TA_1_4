@@ -33,4 +33,6 @@ public interface RestService {
 
 	PasienRujukanDetail parseIGDtoGeneral(PasienIGDDetail pasienIgd) throws ParseException;
 	
+	void updateStatusPasien(PasienRujukanDetail pasien);
+	
 }

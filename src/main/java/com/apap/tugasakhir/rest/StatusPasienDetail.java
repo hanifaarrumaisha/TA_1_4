@@ -1,8 +1,10 @@
 package com.apap.tugasakhir.rest;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(value={"jenis"}, allowSetters=true)
 public class StatusPasienDetail {
 	public StatusPasienDetail() {
 		super();
@@ -17,6 +19,7 @@ public class StatusPasienDetail {
 	@JsonProperty("id")
 	private int id;
 	
+	//@JsonIgnore
 	@JsonProperty("jenis")
 	@JsonIgnore
 	private String jenis;
@@ -29,10 +32,12 @@ public class StatusPasienDetail {
 		this.id = id;
 	}
 
+	//@JsonIgnore
 	public String getJenis() {
 		return jenis;
 	}
-
+	
+	//@JsonIgnore
 	public void setJenis(String jenis) {
 		this.jenis = jenis;
 	}

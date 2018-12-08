@@ -13,10 +13,10 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.model.PoliModel;
 import com.apap.tugasakhir.repository.PoliDb;
+import com.apap.tugasakhir.rest.BaseResponse;
 import com.apap.tugasakhir.rest.DokterDetail;
 import com.apap.tugasakhir.rest.PasienIGDDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
@@ -192,6 +192,13 @@ public class RestServiceImpl implements RestService{
 	        listDokter.add(dokter);
 		}
         return listDokter;
+	}
+	
+	@Override
+	public void updateStatusPasien(PasienRujukanDetail pasien) {
+		BaseResponse response = restTemplate.postForObject(Setting.siApp+"/4/updatePasien", pasien, BaseResponse.class);
+		System.out.println(response.getResult());
+		
 	}
 
 	@Override
