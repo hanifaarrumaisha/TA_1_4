@@ -57,7 +57,6 @@ public class RujukanController {
 		model.addAttribute("pasien",pasien);
 		return "change-statusPasien";
 	}
-	
 
 	@RequestMapping(value="/rawat-jalan/pasien/ubah", method=RequestMethod.POST)
 	private String changeStatusSubmit(@RequestParam("status") String status, @ModelAttribute PasienRujukanDetail pasien, RedirectAttributes redirectAtt) throws ParseException{
