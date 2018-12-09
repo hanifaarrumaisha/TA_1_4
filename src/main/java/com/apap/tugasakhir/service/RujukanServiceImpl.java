@@ -51,26 +51,19 @@ public class RujukanServiceImpl implements RujukanService {
 
 	@Override
 	public void changeRujukan(RujukanRawatJalanModel pasienRujuk, int statusLama) throws ParseException {
-//		int idStatusNow = 0;
-//		if (status.equalsIgnoreCase("mendaftar poli"))
-//			idStatusNow = 1;
-//		else if (status.equalsIgnoreCase("berada di poli"))
-//			idStatusNow = 2;
-//		else if (status.equalsIgnoreCase("selesai"))
-//			idStatusNow = 3;
 		if (pasienRujuk.getStatus() > statusLama && pasienRujuk.getStatus() - statusLama == 1) {
-//			pasien.getStatusPasien().setId(idStatusNow);
-//			pasien.getStatusPasien().setJenis(status)
-			//manggil API dari siAppointment untuk update status
-			//restService.updateStatusPasien(pasien);
 			rujukanDb.save(pasienRujuk);
 			System.out.println("masuk update status berhasil");
 			System.out.println(pasienRujuk.getStatus());
 		}else {
+			System.out.println("gagal, ga valid");
 			pasienRujuk.setStatus(statusLama);
 		}
 		if (pasienRujuk.getStatus() == 3) {
+			System.out.println("post status");
 			String response = restService.getRest(Setting.siApp+"/getPasien/"+pasienRujuk.getIdPasien());
+			System.out.println(response);
+			System.out.println("expected 3: "+pasienRujuk.getStatus());
 			PasienRujukanDetail pasien = restService.parsePasien(response);
 			pasien.setStatusPasien(new StatusPasienDetail(9, "Selesai di Rawat Jalan"));
 			restService.updateStatusPasien(pasien);
@@ -81,7 +74,6 @@ public class RujukanServiceImpl implements RujukanService {
 	public void validateRujukan(PasienRujukanDetail pasien) {
 		if (!rujukanDb.findByIdPasien(pasien.getId()).isPresent()) {
 			// get jadwal terdekat
-			System.out.println(pasien.getPoliRujukan().getId());
 			
 			List<JadwalPoliModel> results = jadwalPoliDb.findByPoliIdAndTanggalGreaterThanEqualOrderByTanggalDesc(pasien.getPoliRujukan().getId(), pasien.getTanggalRujukan());
 			if (results.size() > 0 && pasien.getPoliRujukan()!=null) {
@@ -90,17 +82,9 @@ public class RujukanServiceImpl implements RujukanService {
 				rujukan.setJadwalPoli(results.get(0));
 				rujukan.setNamaPasien(pasien.getNama());
 				rujukan.setStatus(1);
-				System.out.println("masuk update status");
 				rujukan.setListPenanganan(new ArrayList<PenangananModel>());
 				rujukan.setTanggalRujuk(pasien.getTanggalRujukan());
 				rujukanDb.save(rujukan);
-				System.out.println("Tanggal rujukan - tanggal terdekat");
-				System.out.println(pasien.getId());
-				System.out.println(pasien.getTanggalRujukan());
-				System.out.println(results.get(0).getTanggal());
-			} else {
-				System.out.println("ga ada yg terdekat");
-				System.out.println(pasien.getTanggalRujukan());
 			}
 		}
 	}
@@ -125,7 +109,9 @@ public class RujukanServiceImpl implements RujukanService {
 	
 	@Override
 	public List<RujukanRawatJalanModel> getAllRujukan() throws ParseException, JsonParseException, JsonMappingException, IOException{
-		return rujukanDb.findAll();
+		List<RujukanRawatJalanModel> allRujukan = rujukanDb.findAll();
+		System.out.println("expected 3: "+ rujukanDb.getOne((long) 4).getStatus());
+		return allRujukan;
 	}
 
 }

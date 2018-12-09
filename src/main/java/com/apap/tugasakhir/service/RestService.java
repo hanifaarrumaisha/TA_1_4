@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import com.apap.tugasakhir.rest.DokterDetail;
-import com.apap.tugasakhir.rest.JenisPemeriksaanDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienIGDDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
@@ -27,14 +26,13 @@ public interface RestService {
 
 	List<DokterDetail> getAllDokter() throws ParseException;
 
-	void updateStatusPasien(PasienRujukanDetail pasien);
-
 	ArrayList<PasienRujukanDetail> parsePasienIGD(String responseApp) throws ParseException;
 
 	List<PasienRujukanDetail> parseListPasien(String data)
 			throws ParseException, JsonParseException, JsonMappingException, IOException;
 
 	PasienRujukanDetail parseIGDtoGeneral(PasienIGDDetail pasienIgd) throws ParseException;
+	
+	void updateStatusPasien(PasienRujukanDetail pasien);	
 
-		
 }

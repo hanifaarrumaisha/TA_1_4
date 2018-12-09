@@ -46,10 +46,8 @@ public class RestServiceImpl implements RestService{
 		JSONObject json = (JSONObject) parser.parse(data);
 		JSONObject pasienJson = (JSONObject) json.get("result");
 		
-		System.out.println(pasienJson);
 		JSONObject statusJson = (JSONObject) pasienJson.get("statusPasien");
 		JSONObject poliJson = (JSONObject) pasienJson.get("poliRujukan");
-//		TODO get status pasien detail\
 		
 		StatusPasienDetail status = new StatusPasienDetail();
 		status.setId((int) (long) statusJson.get("id"));
@@ -80,13 +78,10 @@ public class RestServiceImpl implements RestService{
 		
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(data);
-		System.out.println("BISA");
 		JSONArray res = (JSONArray) json.get("result");
-		System.out.println(res);
 		
 		Iterator i = res.iterator();
-		
-		System.out.println("characters: "); 
+		 
 		while (i.hasNext()) { 
 			JSONObject pasienJson = (JSONObject) i.next();
 			JSONObject statusJson = (JSONObject) pasienJson.get("statusPasien");
@@ -112,7 +107,6 @@ public class RestServiceImpl implements RestService{
 				pasien.setPoliRujukan(poli);
 			}
 			allPasien.add(pasien);
-			System.out.println(pasien.getNama());
 		}
 		return allPasien;
 	}
@@ -123,13 +117,10 @@ public class RestServiceImpl implements RestService{
 		
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(data);
-		System.out.println("BISA");
 		JSONArray res = (JSONArray) json.get("result");
-		System.out.println(res);
 		
 		Iterator i = res.iterator();
 		
-		System.out.println("characters: "); 
 		while (i.hasNext()) { 
 			JSONObject pasienJson = (JSONObject) i.next();
 			JSONObject statusPasien = (JSONObject) pasienJson.get("statusPasien");
@@ -141,7 +132,6 @@ public class RestServiceImpl implements RestService{
 			pasien.setNama((String) pasienJson.get("nama"));
 			pasien.setStatusPasien(status);
 			allPasien.add(pasien);
-			System.out.println(pasien.getNama());
 		}
 		return allPasien;
 	}
@@ -151,15 +141,12 @@ public class RestServiceImpl implements RestService{
 		DokterDetail dokter = new DokterDetail();
 		JSONParser parser = new JSONParser();
 		String response = restTemplate.getForObject(Setting.siApp+"/getDokter/"+idDokter, String.class);
-        System.out.println(response);
         JSONObject json = (JSONObject) parser.parse(response);
         JSONObject result = (JSONObject) json.get("result");
         String nama = (String) result.get("nama");
         long id_dokter = (long) result.get("id");
         dokter.setId((int)id_dokter);
         dokter.setNama(nama);
-        System.out.println(dokter.getNama());
-        System.out.println(dokter.getId());
         
         return dokter;
 	}
@@ -172,23 +159,17 @@ public class RestServiceImpl implements RestService{
 		
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(response);
-		System.out.println("BISA");
 		JSONArray res = (JSONArray) json.get("result");
-		System.out.println(res);
 		
 		Iterator i = res.iterator();
 		
-		System.out.println("characters: "); 
 		while (i.hasNext()) { 
 			DokterDetail dokter = new DokterDetail();
 			JSONObject dokterJson = (JSONObject) i.next();
-	        System.out.println(response);
 	        String nama = (String) dokterJson.get("nama");
 	        long id_dokter = (long) dokterJson.get("id");
 	        dokter.setId((int)id_dokter);
 	        dokter.setNama(nama);
-	        System.out.println(dokter.getNama());
-	        System.out.println(dokter.getId());
 	        listDokter.add(dokter);
 		}
         return listDokter;
@@ -197,7 +178,6 @@ public class RestServiceImpl implements RestService{
 	@Override
 	public void updateStatusPasien(PasienRujukanDetail pasien) {
 		BaseResponse response = restTemplate.postForObject(Setting.siApp+"/4/updatePasien", pasien, BaseResponse.class);
-		System.out.println(response.getResult());
 		
 	}
 
@@ -205,22 +185,17 @@ public class RestServiceImpl implements RestService{
 	public ArrayList<PasienRujukanDetail> parsePasienIGD(String response) throws ParseException {
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(response);
-		System.out.println("BISA");
 		JSONArray res = (JSONArray) json.get("result");
-		System.out.println(res);
-
 		ArrayList<PasienRujukanDetail> allPasien = new ArrayList<PasienRujukanDetail>();
 		
 		Iterator i = res.iterator();
 		
-		System.out.println("characters: "); 
 		while (i.hasNext()) { 
 			JSONObject pasienJson = (JSONObject) i.next();
 			JSONObject statusJson = (JSONObject) pasienJson.get("status");
 			
 			StatusPasienDetail status = new StatusPasienDetail((int) (long) statusJson.get("id"), (String) statusJson.get("jenis"));
 			
-			System.out.println(pasienJson);
 			PasienIGDDetail pasien = new PasienIGDDetail( 
 					(int) (long) pasienJson.get("id"), 
 					(int) (long) pasienJson.get("idPasien"), 

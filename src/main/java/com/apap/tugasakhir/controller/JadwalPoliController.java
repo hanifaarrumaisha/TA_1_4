@@ -54,7 +54,7 @@ public class JadwalPoliController {
 		return "add-success";
 	}
 	
-	@RequestMapping(value = "/" , method = RequestMethod.GET)
+	@RequestMapping(value = "" , method = RequestMethod.GET)
 	private String viewJadwalPoli(Model model) throws ParseException {
 		List<JadwalPoliModel> listJadwalPoli = jadwalPoliService.getAllJadwalPoli();
 		Map<Integer, DokterDetail> mapDokter = jadwalPoliService.getDoctor();
