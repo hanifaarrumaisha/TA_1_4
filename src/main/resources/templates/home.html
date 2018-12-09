@@ -9,14 +9,8 @@
 </head>
 
 <body>
-
-   <!-- <h1 id="title">
-   	SI Rawat Jalan.
-   </h1>
-   
-   <h2 id = "about-us">
-   	About Us
-   </h2>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+   <!-- 
    
    <div id = "form-login" class = "container">
    	<form action="">
@@ -63,39 +57,7 @@
 </body>
 
 <!-- <style>
-	#title{
-		position: absolute;
-		width: 280px;
-		height: 47px;
-		left: 33px;
-		top: 30px;
-		
-		font-family: Roboto;
-		font-style: normal;
-		font-weight: 900;
-		line-height: normal;
-		font-size: 30px;
-		
-		color: #374050;
-	}
 	
-	#about-us{
-		position: absolute;
-		width: 124px;
-		height: 36px;
-		left: 1100px;
-		top: 35px;
-		
-		font-family: Roboto;
-		font-style: normal;
-		font-weight: 500;
-		line-height: normal;
-		font-size: 20px;
-		text-align: right;
-		
-		color: #374050;
-		
-	}
 	
 	#form-login{
 		position: absolute;
@@ -118,7 +80,7 @@
 		
 	}
 	
-	input[type=text] {
+	input{
 	width: 100%;
   padding: 5px 20px;
   margin: 8px 2px;
