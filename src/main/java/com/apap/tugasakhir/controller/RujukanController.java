@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.apap.tugasakhir.model.PenangananModel;
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.repository.RujukanDb;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
@@ -79,6 +79,21 @@ public class RujukanController {
 		return "redirect:/rawat-jalan/pasien/ubah?idPasien="+pasien.getId();
 	}
 	
+	/**
+	@RequestMapping(value = "/rawat-jalan/pasien/penanganan/test", method = RequestMethod.GET)
+	private String tambahObatLab(@RequestParam(value = "idRujukan") Long idRujukan, Model model) {
+		model.addAttribute("penanganan", new PenangananModel());
+		model.addAttribute("idRujukan", idRujukan);
+		//System.out.println(jenis)
+		return "add-ObatLab";
+	}
 	
 
+	@RequestMapping(value = "/rawat-jalan/pasien/penanganan/test", method = RequestMethod.POST)
+	private String tambahObatLabSubmit(@RequestParam("jenis") String jenis,@ModelAttribute PenangananModel penanganan, RedirectAttributes redirectAtt) {
+		//System.out.println(jenis);
+		System.out.println("jenis");
+		return "add-ObatLab";
+	}
+	**/
 }

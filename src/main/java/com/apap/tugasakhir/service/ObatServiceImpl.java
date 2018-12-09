@@ -1,5 +1,6 @@
 package com.apap.tugasakhir.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class ObatServiceImpl implements ObatService{
 	@Override
 	public void save(ObatModel obat){
 		obatDb.save(obat);
+	}
+	
+	@Override
+	public List<ObatModel> getListObat(){
+		return obatDb.findAll();
 	}
 }
