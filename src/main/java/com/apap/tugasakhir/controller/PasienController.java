@@ -39,12 +39,6 @@ public class PasienController {
 	public String getAllPasien(Model model) throws ParseException, JsonParseException, JsonMappingException, IOException {
 		rujukanService.getAllPasienRujukan();
 		ArrayList<RujukanRawatJalanModel> allRujukan = (ArrayList<RujukanRawatJalanModel>) rujukanService.getAllRujukan();
-		System.out.println("ukuran "+allRujukan.size());
-		System.out.println(allRujukan.get(0).getJadwalPoli().getPoli().getNama());
-		System.out.println(allRujukan.get(1).getJadwalPoli().getPoli().getNama());
-		System.out.println(allRujukan.get(2).getJadwalPoli().getPoli().getNama());
-		System.out.println(allRujukan.get(3).getJadwalPoli().getPoli().getNama());
-		System.out.println(allRujukan.get(4).getJadwalPoli().getTanggal());
 		model.addAttribute("allRujukan", allRujukan);
 		return "view-allPasien";
 	}

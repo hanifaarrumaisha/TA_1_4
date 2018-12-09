@@ -36,14 +36,14 @@
      		<tbody>
      			<tr  th:each  = "rujukan : ${allRujukan}" >
      				<td th:text="${rujukan.idPasien}"></td>
-     				<td th:text="${rujukan.namaPasien}"></td>
+     				<td><a th:href="@{'/rawat-jalan/pasien/'+${rujukan.id}}" th:text="${rujukan.namaPasien}"></a></td>
      				<td th:text="${rujukan.jadwalPoli.poli.nama}"></td>
      				<td th:text="${rujukan.jadwalPoli.tanggal}"></td>
      				<td th:text="${rujukan.tanggalRujuk}"></td>
      				<td th:switch="${rujukan.status}">
      					<span th:case=1>Mendaftar Poli</span>
      					<span th:case=2>Berada di Poli</span>
-     					<span th:case=3>Mendaftar Poli</span>
+     					<span th:case=3>Selesai</span>
      				</td>
      				<td>
      					<a th:href="@{'/rawat-jalan/pasien/ubah?idRujukan='+${rujukan.id}}">Update Status</a>
