@@ -34,18 +34,6 @@ public class UserRoleModel implements Serializable {
 	@Column(name = "role", nullable = false)
 	private String role;
 
-	@NotNull
-	@Column(name = "sistem", nullable = false)
-	private String sistem;
-	
-	public String getSistem() {
-		return sistem;
-	}
-
-	public void setSistem(String sistem) {
-		this.sistem = sistem;
-	}
-
 	public long getId() {
 		return id;
 	}
