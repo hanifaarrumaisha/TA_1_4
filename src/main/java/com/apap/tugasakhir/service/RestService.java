@@ -32,6 +32,7 @@ public interface RestService {
 			throws ParseException, JsonParseException, JsonMappingException, IOException;
 
 	PasienRujukanDetail parseIGDtoGeneral(PasienIGDDetail pasienIgd) throws ParseException;
+
 	
 	void updateStatusPasien(PasienRujukanDetail pasien);	
 }
