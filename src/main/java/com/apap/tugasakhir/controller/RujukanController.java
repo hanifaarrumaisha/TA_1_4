@@ -49,34 +49,27 @@ public class RujukanController {
 	}
 	
 	@RequestMapping(value="/rawat-jalan/pasien/ubah", method=RequestMethod.GET)
-	public String changeStatus(@RequestParam(value = "idPasien") Long idPasien, Model model) throws ParseException {
-		String url = Setting.siApp+"/getPasien/"+idPasien;
-		String response = restService.getRest(url);
-		PasienRujukanDetail pasien = restService.parsePasien(response);
-		StatusPasienDetail status = pasien.getStatusPasien();
+	public String changeStatus(@RequestParam(value = "idRujukan") Long idRujukan, Model model) throws ParseException {
+		RujukanRawatJalanModel pasien = rujukanDb.getOne(idRujukan);
 		model.addAttribute("pasien",pasien);
+		model.addAttribute("statusLama", pasien.getStatus());
 		return "change-statusPasien";
 	}
-	
 
 	@RequestMapping(value="/rawat-jalan/pasien/ubah", method=RequestMethod.POST)
-	private String changeStatusSubmit(@RequestParam("status") String status, @ModelAttribute PasienRujukanDetail pasien, RedirectAttributes redirectAtt) throws ParseException{
-		System.out.println("status baru " + status);
-		System.out.println("id status pasien" + pasien.getId());
-		int statusLama = pasien.getStatusPasien().getId();
-		System.out.println(statusLama);
-		String statusPasien = pasien.getStatusPasien().getJenis();
-		System.out.println("status pasien baru: " + statusPasien);
-		rujukanService.changeRujukan(pasien, status);
+	private String changeStatusSubmit(@RequestParam("statusLama") int statusLama, @ModelAttribute RujukanRawatJalanModel pasienRujukan, RedirectAttributes redirectAtt) throws ParseException{
+		System.out.println("status baru " + pasienRujukan.getStatus());
+		System.out.println("status lama " + statusLama);
+		rujukanService.changeRujukan(pasienRujukan, statusLama);
 		String message = "";
-		if(statusLama == pasien.getStatusPasien().getId()) {
-			message = "Status Pasien " + pasien.getNama() + " gagal diubah";
+		if(statusLama == pasienRujukan.getStatus()) {
+			message = "Status Pasien " + pasienRujukan.getNamaPasien() + " gagal diubah";
 		}
 		else {
-			message = "Status Pasien " + pasien.getNama() + " berhasil diubah!";
+			message = "Status Pasien " + pasienRujukan.getNamaPasien() + " berhasil diubah!";
 		}
 		redirectAtt.addFlashAttribute("message", message);
-		return "redirect:/rawat-jalan/pasien/ubah?idPasien="+pasien.getId();
+		return "redirect:/rawat-jalan/pasien";
 	}
 	
 	/**

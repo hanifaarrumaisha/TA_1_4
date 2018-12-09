@@ -9,6 +9,8 @@ import com.apap.tugasakhir.rest.*;
 
 public interface JadwalPoliService {
 	void addJadwalPoli(JadwalPoliModel jadwalPoli);
+	void updateJadwalPoli(JadwalPoliModel jadwalPoli , int idJP);
+	JadwalPoliModel getById(int id);
 	List<JadwalPoliModel> getAllJadwalPoli();
 	Map<Integer, DokterDetail> getDoctor() throws ParseException;
 }	

@@ -92,6 +92,7 @@ public class PenangananController {
 		**/
 	}
 	
+	//controller buat coba
 	@RequestMapping(value = "/coba", method = RequestMethod.GET)
 	private String mintaPeriksa(){
 		

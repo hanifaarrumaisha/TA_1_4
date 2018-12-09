@@ -6,6 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(value={"nama"}, allowSetters= true)
 public class PoliRujukanDetail {
+	
+	public PoliRujukanDetail(int id, String nama) {
+		super();
+		this.id = id;
+		this.nama = nama;
+	}
+	public PoliRujukanDetail() {
+		super();
+	}
 	@JsonProperty("id")
 	private int id;
 	

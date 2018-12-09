@@ -13,11 +13,12 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
+import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.model.PoliModel;
+import com.apap.tugasakhir.repository.PoliDb;
 import com.apap.tugasakhir.rest.BaseResponse;
 import com.apap.tugasakhir.rest.DokterDetail;
-import com.apap.tugasakhir.rest.JenisPemeriksaanDetail;
-import com.apap.tugasakhir.rest.PasienDetail;
+import com.apap.tugasakhir.rest.PasienIGDDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.PoliRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
@@ -29,6 +30,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class RestServiceImpl implements RestService{
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Autowired
+	PoliDb poliDb;
 	
 	@Override
 	public String getRest(String url) throws ParseException{
@@ -45,6 +49,7 @@ public class RestServiceImpl implements RestService{
 		System.out.println(pasienJson);
 		JSONObject statusJson = (JSONObject) pasienJson.get("statusPasien");
 		JSONObject poliJson = (JSONObject) pasienJson.get("poliRujukan");
+//		TODO get status pasien detail\
 		
 		StatusPasienDetail status = new StatusPasienDetail();
 		status.setId((int) (long) statusJson.get("id"));
@@ -70,7 +75,7 @@ public class RestServiceImpl implements RestService{
 	}
 	
 	@Override
-	public List<PasienRujukanDetail> parsePasienRujukan(String data) throws ParseException, JsonParseException, JsonMappingException, IOException {
+	public List<PasienRujukanDetail> parseListPasien(String data) throws ParseException, JsonParseException, JsonMappingException, IOException {
 		List<PasienRujukanDetail> allPasien = new ArrayList<PasienRujukanDetail>();
 		
 		JSONParser parser = new JSONParser();
@@ -113,8 +118,8 @@ public class RestServiceImpl implements RestService{
 	}
 	
 	@Override
-	public List<PasienDetail> parseAllPasien(String data) throws ParseException{
-		List<PasienDetail> allPasien = new ArrayList<PasienDetail>();
+	public List<PasienRujukanDetail> parseAllPasien(String data) throws ParseException{
+		List<PasienRujukanDetail> allPasien = new ArrayList<PasienRujukanDetail>();
 		
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(data);
@@ -131,7 +136,7 @@ public class RestServiceImpl implements RestService{
 			StatusPasienDetail status = new StatusPasienDetail();
 			status.setId((int) (long) statusPasien.get("id"));
 			status.setJenis((String) statusPasien.get("jenis"));
-			PasienDetail pasien = new PasienDetail();
+			PasienRujukanDetail pasien = new PasienRujukanDetail();
 			pasien.setId((int) (long) pasienJson.get("id"));
 			pasien.setNama((String) pasienJson.get("nama"));
 			pasien.setStatusPasien(status);
@@ -153,8 +158,8 @@ public class RestServiceImpl implements RestService{
         long id_dokter = (long) result.get("id");
         dokter.setId((int)id_dokter);
         dokter.setNama(nama);
-        System.out.println(nama);
-        System.out.println(id_dokter);
+        System.out.println(dokter.getNama());
+        System.out.println(dokter.getId());
         
         return dokter;
 	}
@@ -182,8 +187,8 @@ public class RestServiceImpl implements RestService{
 	        long id_dokter = (long) dokterJson.get("id");
 	        dokter.setId((int)id_dokter);
 	        dokter.setNama(nama);
-	        System.out.println(nama);
-	        System.out.println(id_dokter);
+	        System.out.println(dokter.getNama());
+	        System.out.println(dokter.getId());
 	        listDokter.add(dokter);
 		}
         return listDokter;
@@ -197,34 +202,52 @@ public class RestServiceImpl implements RestService{
 	}
 
 	@Override
-	public List<JenisPemeriksaanDetail> getAllJenisPemeriksaan() throws ParseException{
-		List<JenisPemeriksaanDetail> listPemeriksaan = new ArrayList<JenisPemeriksaanDetail>();
-		
-		String response = restTemplate.getForObject(Setting.siLab+"/lab/pemeriksaan/", String.class);
-		
+	public ArrayList<PasienRujukanDetail> parsePasienIGD(String response) throws ParseException {
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(response);
 		System.out.println("BISA");
 		JSONArray res = (JSONArray) json.get("result");
 		System.out.println(res);
+
+		ArrayList<PasienRujukanDetail> allPasien = new ArrayList<PasienRujukanDetail>();
 		
 		Iterator i = res.iterator();
 		
 		System.out.println("characters: "); 
 		while (i.hasNext()) { 
-		
-			JenisPemeriksaanDetail pemeriksaan = new JenisPemeriksaanDetail();
-			JSONObject pemeriksaanJson = (JSONObject) i.next();
-	        System.out.println(response);
-	        String nama = (String) pemeriksaanJson.get("nama");
-	        long id_pemeriksaan = (long) pemeriksaanJson.get("id");
-	        pemeriksaan.setId((int)id_pemeriksaan);
-	        pemeriksaan.setNama(nama);
-	        System.out.println(nama);
-	        System.out.println(id_pemeriksaan);
-	        listPemeriksaan.add(pemeriksaan);
+			JSONObject pasienJson = (JSONObject) i.next();
+			JSONObject statusJson = (JSONObject) pasienJson.get("status");
+			
+			StatusPasienDetail status = new StatusPasienDetail((int) (long) statusJson.get("id"), (String) statusJson.get("jenis"));
+			
+			System.out.println(pasienJson);
+			PasienIGDDetail pasien = new PasienIGDDetail( 
+					(int) (long) pasienJson.get("id"), 
+					(int) (long) pasienJson.get("idPasien"), 
+					(int) (long) pasienJson.get("idDokter"), 
+					Date.valueOf((String) pasienJson.get("waktuMasuk")), 
+					Date.valueOf((String) pasienJson.get("waktuUpdate")), 
+					(String) pasienJson.get("keterangan"), 
+					(PenangananModel) pasienJson.get("detailPenanganan"), 
+					(int) (long) pasienJson.get("idPoli"), 
+					status);
+			
+			PasienRujukanDetail pasienRujukan = parseIGDtoGeneral(pasien);
+	        allPasien.add(pasienRujukan);
 		}
-        return listPemeriksaan;
+		return allPasien;
+	}
+	
+	@Override
+	public PasienRujukanDetail parseIGDtoGeneral(PasienIGDDetail pasienIgd) throws ParseException{
+		String response = getRest(Setting.siApp+"/getPasien/"+pasienIgd.getIdPasien());
+		PasienRujukanDetail pasienSiApp = parsePasien(response);
+		String nama = pasienSiApp.getNama();
+//		TODO ADA KEMUNGKINAN POLI YANG DITUJU GA ADA
+		PoliModel poli = poliDb.getOne(pasienIgd.getIdPoli());
+		PoliRujukanDetail poliDetail = new PoliRujukanDetail(poli.getId(), poli.getNama());
+		PasienRujukanDetail pasien = new PasienRujukanDetail(pasienIgd.getIdPasien(), nama, pasienIgd.getWaktuMasuk(), pasienIgd.getStatus(), poliDetail);
+		return pasien;
 	}
 
 }
