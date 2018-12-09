@@ -36,7 +36,7 @@
      		<tbody>
      			<tr  th:each  = "rujukan : ${allRujukan}" >
      				<td th:text="${rujukan.idPasien}"></td>
-     				<td th:text="${rujukan.namaPasien}"></td>
+     				<td><a th:href="@{'/rawat-jalan/pasien/'+${rujukan.id}}" th:text="${rujukan.namaPasien}"></a></td>
      				<td th:text="${rujukan.jadwalPoli.poli.nama}"></td>
      				<td th:text="${rujukan.jadwalPoli.tanggal}"></td>
      				<td th:text="${rujukan.tanggalRujuk}"></td>
