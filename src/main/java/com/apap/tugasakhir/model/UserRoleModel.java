@@ -33,7 +33,7 @@ public class UserRoleModel implements Serializable {
 	@Size(max = 255)
 	@Column(name = "role", nullable = false)
 	private String role;
-
+	
 	public long getId() {
 		return id;
 	}
