@@ -71,16 +71,15 @@ public class PenangananController {
 		else {
 			model.addAttribute("jenis", jenis);
 		}
-
-		
 		return "add-ObatLab";
 	}
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.POST)
-	private String addJabatan(@RequestParam(value ="jenis") String jenis, @ModelAttribute PenangananModel penanganan, RedirectAttributes redirectAtt, Model model) throws ParseException{
+	private String addJabatan(@RequestParam("jenis") Optional<String> jenis, @ModelAttribute PenangananModel penanganan, RedirectAttributes redirectAtt, Model model) throws ParseException{
 		penangananService.addPenanganan(penanganan);
 		System.out.println("jenis"+ jenis);
 		List<ObatModel> listObat = obatService.getListObat();
+		model.addAttribute("listObat", listObat);
 		Map<Integer,String> mapPemeriksaan = penangananService.getDataPemeriksaan();
 		
 		return "SubmitJenisSucces";
