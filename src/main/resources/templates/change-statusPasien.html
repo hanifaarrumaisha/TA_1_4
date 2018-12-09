@@ -18,19 +18,17 @@
 					<form th:action="@{/rawat-jalan/pasien/ubah}" th:object="${pasien}" method="POST">
 						<div class="card-body">
 							<label>Ubah Status:</label>
-								<input hidden th:field="*{id}" th:value="*{id}">
-								<input hidden th:field="*{nama}" th:value="*{nama}">
-								<input hidden th:field="*{tanggalRujukan}" th:value="*{tanggalRujukan}">
-								<input hidden th:field="*{statusPasien.id}" th:value="*{statusPasien.id}">
-								<input hidden th:field="*{statusPasien.jenis}" th:value="*{statusPasien.jenis}">
-								<input hidden th:field="*{poliRujukan.id}" th:value="*{poliRujukan.id}">
-								<input hidden th:field="*{poliRujukan.nama}" th:value="*{poliRujukan.nama}">
+								<input hidden th:field="*{id}" th:value="${pasien.id}">
+								<input hidden th:field="*{idPasien}" th:value="*{idPasien}">
+								<input hidden th:field="*{namaPasien}" th:value="*{namaPasien}">
+								<input hidden th:field="*{tanggalRujuk}" th:value="*{tanggalRujuk}">
+								<input hidden th:field="*{jadwalPoli}" th:value="*{jadwalPoli}">
+								<input hidden th:name="statusLama" th:value="${statusLama}">
 								
-								
-								<select  class="form-control" required="required" th:name="status">
-							     	<option value="7" >Mendaftar di Rawat Jalan</option>
-							     	<option value="8">Berada di Rawat Jalan</option>
-							     	<option value="9">Selesai di Rawat Jalan</option>
+								<select  class="form-control" required="required" th:field="*{status}" th:value="*{status}" name="status">
+							     	<option value=1>Mendaftar Poli</option>
+							     	<option value=2>Berada di Poli</option>
+							     	<option value=3>Selesai</option>
 						    	</select>
 							<p></p>
 							<button type="submit" class="btn btn-primary">Submit</button>

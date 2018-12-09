@@ -59,24 +59,23 @@ public class PenangananServiceImpl implements PenangananService {
 		
 	}
 	
-//	@Override
-//	public String kirimPenanganan() {
-//		
-//		
-//		PemeriksaanDetail pemeriksaans = new PemeriksaanDetail();
-//	
-//		
-//		pemeriksaans.setJenis(1);
-//		pemeriksaans.setPasien(1);
-//		
-//		long time = System.currentTimeMillis();
-//		Date date = new Date(time);
-//		pemeriksaans.setWaktu(date);
-//		
-//		String pemeriksaan = restTemplate.postForObject(Setting.siLab+ "/lab/pemeriksaan/permintaan", pemeriksaans, String.class);
-//		return pemeriksaan;
-//	}
+	@Override
+	public String postPenanganan(PenangananModel penanganan) {
+		
+		
+		PemeriksaanDetail pemeriksaans = new PemeriksaanDetail();
+	
+		
+		pemeriksaans.setJenis(penanganan.getJenisPemeriksaan());
+		pemeriksaans.setPasien(penanganan.getRujukanRawatJalan().getIdPasien());
+		Date date = new Date(penanganan.getWaktu().getTime());
+		pemeriksaans.setWaktu(date);
+		
+		String pemeriksaan = restTemplate.postForObject(Setting.siLab+ "/lab/pemeriksaan/permintaan", pemeriksaans, String.class);
+		return pemeriksaan;
+	}
 
+	//ini yang pake dummy
 	@Override
 	public String kirimPenanganan() {
 		// TODO Auto-generated method stub

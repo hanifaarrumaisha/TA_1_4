@@ -16,6 +16,7 @@ import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.repository.RujukanRawatJalanDb;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.apap.tugasakhir.rest.Setting;
+import com.apap.tugasakhir.rest.StatusPasienDetail;
 import com.apap.tugasakhir.service.RestService;
 import com.apap.tugasakhir.service.RujukanService;
 
@@ -48,40 +49,29 @@ public class RujukanController {
 	}
 	
 	@RequestMapping(value="/rawat-jalan/pasien/ubah", method=RequestMethod.GET)
-	public String changeStatus(@RequestParam(value = "idPasien") Long idPasien, Model model) throws ParseException {
-//		RujukanRawatJalanModel rujukan = rujukanService.getRujukanById(idRujukan);
-		
-		String url = Setting.siApp+"/getPasien/"+idPasien;
-		String response = restService.getRest(url);
-		PasienRujukanDetail pasien = restService.parsePasien(response);
+	public String changeStatus(@RequestParam(value = "idRujukan") Long idRujukan, Model model) throws ParseException {
+		RujukanRawatJalanModel pasien = rujukanDb.getOne(idRujukan);
 		model.addAttribute("pasien",pasien);
-		
-//		model.addAttribute("rujukan",rujukan);
+		model.addAttribute("statusLama", pasien.getStatus());
 		return "change-statusPasien";
 	}
-	
 
 	@RequestMapping(value="/rawat-jalan/pasien/ubah", method=RequestMethod.POST)
-	private String changeStatusSubmit(@ModelAttribute PasienRujukanDetail pasien, RedirectAttributes redirectAtt) throws ParseException{
-//		System.out.println("nama" + String.valueOf(rujukan.getIdPasien()));
-//		String url = Setting.siApp+"/getPasien/"+rujukan.getIdPasien();
-//		String response = restService.getRest(url);
-//		System.out.println(response);
-//		PasienRujukanDetail pasien = restService.p	arsePasien(response);
-		System.out.println(pasien.getId());
-		int statusLama = pasien.getStatusPasien().getId();
-		System.out.println(statusLama);
-		String statusPasien = pasien.getStatusPasien().getJenis();
-		rujukanService.changeRujukan(pasien, statusPasien);
+	private String changeStatusSubmit(@RequestParam("statusLama") int statusLama, @ModelAttribute RujukanRawatJalanModel pasienRujukan, RedirectAttributes redirectAtt) throws ParseException{
+		System.out.println("status baru " + pasienRujukan.getStatus());
+		System.out.println("status lama " + statusLama);
+		rujukanService.changeRujukan(pasienRujukan, statusLama);
 		String message = "";
-		if(statusLama == pasien.getStatusPasien().getId()) {
-			message = "Status Pasien " + pasien.getNama() + " gagal diubah";
+		if(statusLama == pasienRujukan.getStatus()) {
+			message = "Status Pasien " + pasienRujukan.getNamaPasien() + " gagal diubah";
 		}
 		else {
-			message = "Status Pasien " + pasien.getNama() + " berhasil diubah!";
+			message = "Status Pasien " + pasienRujukan.getNamaPasien() + " berhasil diubah!";
 		}
 		redirectAtt.addFlashAttribute("message", message);
-		return "redirect:/rawat-jalan/pasien/ubah";
+		return "redirect:/rawat-jalan/pasien";
 	}
+	
+	
 
 }

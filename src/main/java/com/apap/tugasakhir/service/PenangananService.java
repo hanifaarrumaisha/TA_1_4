@@ -27,7 +27,9 @@ public interface PenangananService {
 
 
 
-	//String kirimPenanganan();
+	String postPenanganan(PenangananModel penanganan);
+
+
 
 
 

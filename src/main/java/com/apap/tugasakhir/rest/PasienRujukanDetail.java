@@ -5,9 +5,25 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PasienRujukanDetail {
+	public PasienRujukanDetail(int id, String nama, Date tanggalRujukan, StatusPasienDetail statusPasien,
+			PoliRujukanDetail poliRujukan) {
+		super();
+		this.id = id;
+		this.nama = nama;
+		this.tanggalRujukan = tanggalRujukan;
+		this.statusPasien = statusPasien;
+		this.poliRujukan = poliRujukan;
+	}
+	
+	public PasienRujukanDetail() {
+		super();
+	}
+
+
+
 	@JsonProperty("id")
 	private int id;
-	
+
 	@JsonProperty("nama")
 	private String nama;
 	

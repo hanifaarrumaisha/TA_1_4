@@ -75,6 +75,7 @@ public class PenangananController {
 		return "redirect:/rawat-jalan/pasien/penanganan/tambah";
 	}
 	
+	//controller buat coba
 	@RequestMapping(value = "/coba", method = RequestMethod.GET)
 	private String mintaPeriksa(){
 		
