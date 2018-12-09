@@ -9,10 +9,108 @@
 </head>
 
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
 
-    <div class="container-fluid">
-        <h2 th:text=" 'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
-    </div>
+   <h1 id="title">
+   	SI Rawat Jalan.
+   </h1>
+   
+   <h2 id = "about-us">
+   	About Us
+   </h2>
+   
+   <div id = "form-login" class = "container">
+   	<form action="">
+   		<label for="fname">Username</label>
+		  <input type="text" id="fname" name="fname" class = "inputs">
+		  <label for="lname">Password</label>
+		  <input type="text" id="lname" name="lname" class = "inputs">
+		  <br><br><br>
+		  <button type = "submit">Login</button>
+   	</form>
+   </div>
+    
 </body>
+
+<style>
+	#title{
+		position: absolute;
+		width: 280px;
+		height: 47px;
+		left: 33px;
+		top: 30px;
+		
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 900;
+		line-height: normal;
+		font-size: 30px;
+		
+		color: #374050;
+	}
+	
+	#about-us{
+		position: absolute;
+		width: 124px;
+		height: 36px;
+		left: 1100px;
+		top: 35px;
+		
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+		font-size: 20px;
+		text-align: right;
+		
+		color: #374050;
+		
+	}
+	
+	#form-login{
+		position: absolute;
+		width: 600px;
+		height: 400px;
+		left : 300px;
+		top: 100px;
+		
+		background: #FFFFFF;
+		box-shadow: 1px 4px 10px #89BDD3;
+	}
+	
+	form{
+		margin-top : 50px;
+		font-family: Roboto;
+	}
+	
+	.inputs{
+	  width : 50%;
+		
+	}
+	
+	input[type=text] {
+	width: 100%;
+  padding: 5px 20px;
+  margin: 8px 2px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #67BADC;
+  	display : inline-block;
+	text-align : left;
+  	font-weight : 900	;
+}
+
+	button{
+		background: #67BADC;
+		border-radius: 2px;
+		border : none;
+		color : white;
+		font-family: Roboto;
+		width : 100px;
+		height : 50px;
+		border-radius : 10px;
+		margin-left : 40%;
+		box-shadow: 1px 4px 10px;
+	}
+
+</style>
 </html>

@@ -16,7 +16,8 @@
 <body>
 
 <div th:fragment="navbar" >
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background : linear-gradient(90deg, #FFE031 -5.38%, #0100EC -5.38%, #7B1AF0 39.64%, #FB36F4 87.22%);
+opacity: 0.6;">
         <a class="navbar-brand" href="#">SI Rawat Jalan</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -40,7 +41,12 @@
     <div th:replace="${alert} ? ~{fragments/fragment :: ${alert}} : ~{}"></div>
 </div>
 </body>
+<style>
+	.nav-link{
+		color : white;
+	}
 
+</style>
 
 	<div th:fragment="alert-blue" th:text="${alertText}"
 		class="alert alert-primary" role="alert"></div>

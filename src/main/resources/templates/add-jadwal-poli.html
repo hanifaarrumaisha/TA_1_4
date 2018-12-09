@@ -11,13 +11,20 @@
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<div class = "container-fluid">
+	<div class = "container" style = "text-align : center; ">
+		<br style = "width : 10px;">
+		<div id = "gambar">
+			<img alt="" src="https://www.iconsdb.com/icons/preview/color/7B1AF0/list-rich-xxl.png">
+		</div>
 		<br>
-		<h2>Tambah Jadwal Poli</h2>
+		<h2 style = "color : #7B1AF0; display : inline-block; ">
+			Tambah Jadwal Poli
+		</h2>
+		
 	</div>
 	
 	<hr>
-	<div>
+	<div class = "container" id = "form-input">
 		<form th:action="@{/rawat-jalan/poli/jadwal/tambah}" th:object = "${jadwalPoli}" method = "POST">
 		
 					<label>Id Poli</label>
@@ -54,10 +61,49 @@
 						          th:text="${dokter.id} + ' - ' + ${dokter.nama}"></option>
 						</select> 
 					</div>
-					
-			<button type = "submit" name="save" class = "btn btn-primary"> Submit </button>
+					<br><br>
+					<div class = "container">
+						<button  type = "submit" name="save" class = "btn btn-primary"> Tambah </button>		
+					</div>
+			
 		</form>
 	</div>
 </body>
+
+<style>
+	input,select {
+	  width: 100%;
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  box-sizing: border-box;
+	  border: none;
+	  background-color: #7B1AF0;
+	  color: white;
+	  border-radius : 20px;
+	}
+	
+	label{
+		font-weight : 600;
+		font-family : Roboto;
+	}
+	
+	.btn-primary{
+		background-color : #9D00C6;
+		border : none;
+		border-radius : 7px;
+		margin-bottom : 10px;
+		width : 100%;
+		height: 50px;
+	}
+	
+	img{
+		
+		height :30px;
+		widht : 30px;
+	}
+	
+
+	
+</style>
 
 </html>
