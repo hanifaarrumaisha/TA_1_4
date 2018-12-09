@@ -21,11 +21,6 @@ public class DokterController {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	@Bean
-	public RestTemplate rest() {
-		return new RestTemplate();
-	}
-	
 
 	@RequestMapping()
 	public DokterDetail ambilDokter(@RequestParam("id") String id ) throws ParseException{
