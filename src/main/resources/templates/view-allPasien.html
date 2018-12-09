@@ -43,7 +43,7 @@
      				<td th:switch="${rujukan.status}">
      					<span th:case=1>Mendaftar Poli</span>
      					<span th:case=2>Berada di Poli</span>
-     					<span th:case=3>Mendaftar Poli</span>
+     					<span th:case=3>Selesai</span>
      				</td>
      				<td>
      					<a th:href="@{'/rawat-jalan/pasien/ubah?idRujukan='+${rujukan.id}}">Update Status</a>

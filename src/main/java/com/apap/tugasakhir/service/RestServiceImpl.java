@@ -132,7 +132,6 @@ public class RestServiceImpl implements RestService{
 			pasien.setNama((String) pasienJson.get("nama"));
 			pasien.setStatusPasien(status);
 			allPasien.add(pasien);
-			System.out.println(pasien.getNama());
 		}
 		return allPasien;
 	}
@@ -198,7 +197,6 @@ public class RestServiceImpl implements RestService{
 			
 			StatusPasienDetail status = new StatusPasienDetail((int) (long) statusJson.get("id"), (String) statusJson.get("jenis"));
 			
-			System.out.println(pasienJson);
 			PasienIGDDetail pasien = new PasienIGDDetail( 
 					(int) (long) pasienJson.get("id"), 
 					(int) (long) pasienJson.get("idPasien"), 

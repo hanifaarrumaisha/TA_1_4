@@ -68,6 +68,7 @@ public class RujukanController {
 		else {
 			message = "Status Pasien " + pasienRujukan.getNamaPasien() + " berhasil diubah!";
 		}
+		System.out.println("expected 3: "+pasienRujukan.getStatus());
 		redirectAtt.addFlashAttribute("message", message);
 		return "redirect:/rawat-jalan/pasien";
 	}
