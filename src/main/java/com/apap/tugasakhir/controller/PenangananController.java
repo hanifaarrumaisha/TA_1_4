@@ -1,7 +1,10 @@
 package com.apap.tugasakhir.controller;
 
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import com.apap.tugasakhir.repository.PenangananDb;
 import com.apap.tugasakhir.service.ObatService;
 import com.apap.tugasakhir.service.PenangananService;
 import com.apap.tugasakhir.service.RestService;
+import org.json.simple.parser.ParseException;
 
 
 @Controller
@@ -36,9 +40,20 @@ public class PenangananController {
 	private RestService restService;
 			
 	@GetMapping()
-	public String viewAllPenanganan(Model model) {
+	public String viewAllPenanganan(Model model) throws ParseException {
 		List<PenangananModel> listPenanganan = penangananService.getPenangananList();
-	
+		Map<Integer, String> mapPemeriksaan = penangananService.getDataPemeriksaan();
+		
+		Timestamp ts=new Timestamp(System.currentTimeMillis());  
+        Date date=new Date(ts.getTime());  
+        System.out.println(date);  
+		
+		for(PenangananModel haha : listPenanganan) {
+			Date datez = new Date(haha.getWaktu().getTime());
+			System.out.println(datez);
+		}
+		
+		model.addAttribute("mapPemeriksaan", mapPemeriksaan);
 		model.addAttribute("listPenanganan", listPenanganan);
 		
 		return "view-riwayat-penanganan";
@@ -73,6 +88,13 @@ public class PenangananController {
 		return "redirect:/rawat-jalan/pasien/penanganan/tambah";
 		**/
 	}
-
+	
+	@RequestMapping(value = "/coba", method = RequestMethod.GET)
+	private String mintaPeriksa(){
+		
+	
+		return penangananService.kirimPenanganan();
+	}
+	
 
 }

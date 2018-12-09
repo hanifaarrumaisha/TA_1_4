@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 
 import com.apap.tugasakhir.rest.DokterDetail;
+import com.apap.tugasakhir.rest.JenisPemeriksaanDetail;
 import com.apap.tugasakhir.rest.PasienDetail;
 import com.apap.tugasakhir.rest.PasienRujukanDetail;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -24,7 +25,10 @@ public interface RestService {
 	DokterDetail getDokter(int idDokter) throws ParseException;
 
 	List<DokterDetail> getAllDokter() throws ParseException;
-
+	
 	void updateStatusPasien(PasienRujukanDetail pasien);
+
+	List<JenisPemeriksaanDetail> getAllJenisPemeriksaan() throws ParseException;
+
 	
 }

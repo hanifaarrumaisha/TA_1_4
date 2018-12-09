@@ -7,12 +7,17 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-@Table(name = "penanganan")
+@Table(name = "penanganan") 
+@JsonIgnoreProperties(value={"deskripsi", "obat", "rujukanRawatJalan"}, allowSetters=true)
 public class PenangananModel implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -21,6 +26,7 @@ public class PenangananModel implements Serializable {
 	@Column (name = "waktu", nullable = false)
 	private Timestamp waktu;
 	
+	@JsonIgnore
 	@NotNull
 	@Size(max = 255)
 	@Column (name = "deskripsi", nullable = false)
@@ -29,6 +35,16 @@ public class PenangananModel implements Serializable {
 	@Size(max = 255)
 	@Column(name = "jenis_pemeriksaan", nullable = true)
 	private Integer jenisPemeriksaan;
+	
+
+	public Integer getJenisPemeriksaan() {
+		return jenisPemeriksaan;
+	}
+
+	public void setJenisPemeriksaan(Integer jenisPemeriksaan) {
+		this.jenisPemeriksaan = jenisPemeriksaan;
+	}
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "obat", referencedColumnName = "id", nullable = true)
