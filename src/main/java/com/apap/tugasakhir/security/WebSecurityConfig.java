@@ -17,19 +17,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http
+			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/css/**").permitAll()
 			.antMatchers("/js/**").permitAll()
+			.antMatchers("/rawat-jalan/obat/**").permitAll()
+			.antMatchers("/rawat-jalan/poli/jadwal/dokter-available").permitAll()
 			.antMatchers("/rawat-jalan/poli/tambah").hasAnyAuthority("ADMINRAWATJALAN")
 			.antMatchers("/rawat-jalan/poli").hasAnyAuthority("ADMINRAWATJALAN", "STAFRAWATJALAN")
 			.antMatchers("/rawat-jalan/poli/ubah").hasAnyAuthority("ADMINRAWATJALAN")
 			.antMatchers("/rawat-jalan/poli/jadwal/tambah").hasAnyAuthority("ADMINRAWATJALAN")
 			.antMatchers("/rawat-jalan/poli/jadwal").hasAnyAuthority("ADMINRAWATJALAN", "STAFRAWATJALAN")
-			.antMatchers("/rawat-jalan/poli/jadwal/dokter-available").permitAll()
 			.antMatchers("/rawat-jalan/poli/jadwal/ubah/**").hasAnyAuthority("ADMINRAWATJALAN")
 			.antMatchers("/rawat-jalan/pasien/**").hasAnyAuthority("ADMINRAWATJALAN", "STAFRAWATJALAN")
-			.antMatchers("/rawat-jalan/obat/tambah").permitAll()
-//			.antMatchers("/dealer/**").hasAnyAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
