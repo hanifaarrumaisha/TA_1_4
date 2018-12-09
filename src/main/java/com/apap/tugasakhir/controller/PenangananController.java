@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,6 @@ import com.apap.tugasakhir.repository.PenangananDb;
 import com.apap.tugasakhir.service.ObatService;
 import com.apap.tugasakhir.service.PenangananService;
 import com.apap.tugasakhir.service.RestService;
-import org.json.simple.parser.ParseException;
 
 
 @Controller
@@ -71,17 +71,20 @@ public class PenangananController {
 		else {
 			model.addAttribute("jenis", jenis);
 		}
-		List<ObatModel> listObat = obatService.getListObat();
+
 		
 		return "add-ObatLab";
 	}
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.POST)
-	private String addJabatan(@RequestParam(value ="jenis") String jenis, @ModelAttribute PenangananModel penanganan, RedirectAttributes redirectAtt){
+	private String addJabatan(@RequestParam(value ="jenis") String jenis, @ModelAttribute PenangananModel penanganan, RedirectAttributes redirectAtt, Model model) throws ParseException{
 		penangananService.addPenanganan(penanganan);
 		System.out.println("jenis"+ jenis);
+		List<ObatModel> listObat = obatService.getListObat();
+		Map<Integer,String> mapPemeriksaan = penangananService.getDataPemeriksaan();
+		
 		return "SubmitJenisSucces";
-		/**
+		/*
 		penangananService.addPenanganan(penanganan);
 		String message = "Penanganan " + " berhasil ditambah";
 		redirectAtt.addFlashAttribute("message", message);
