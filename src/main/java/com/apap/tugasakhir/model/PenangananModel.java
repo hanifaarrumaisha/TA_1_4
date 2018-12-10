@@ -24,7 +24,7 @@ public class PenangananModel implements Serializable {
 	
 	@NotNull
 	@Column (name = "waktu", nullable = false)
-	private Timestamp waktu;
+	private String waktu;
 	
 	@JsonIgnore
 	@NotNull
@@ -32,7 +32,6 @@ public class PenangananModel implements Serializable {
 	@Column (name = "deskripsi", nullable = false)
 	private String deskripsi;
 	
-	@Size(max = 255)
 	@Column(name = "jenis_pemeriksaan", nullable = true)
 	private Integer jenisPemeriksaan;
 	
@@ -58,11 +57,11 @@ public class PenangananModel implements Serializable {
 	@JsonIgnore
 	private RujukanRawatJalanModel rujukanRawatJalan;
 	
-	public Timestamp getWaktu() {
+	public String getWaktu() {
 		return waktu;
 	}
 
-	public void setWaktu(Timestamp waktu) {
+	public void setWaktu(String waktu) {
 		this.waktu = waktu;
 	}
 

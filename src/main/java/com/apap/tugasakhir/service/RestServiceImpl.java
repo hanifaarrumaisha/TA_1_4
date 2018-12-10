@@ -186,7 +186,6 @@ public class RestServiceImpl implements RestService{
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(response);
 		JSONArray res = (JSONArray) json.get("result");
-		
 		ArrayList<PasienRujukanDetail> allPasien = new ArrayList<PasienRujukanDetail>();
 		
 		Iterator i = res.iterator();
@@ -225,4 +224,5 @@ public class RestServiceImpl implements RestService{
 		PasienRujukanDetail pasien = new PasienRujukanDetail(pasienIgd.getIdPasien(), nama, pasienIgd.getWaktuMasuk(), pasienIgd.getStatus(), poliDetail);
 		return pasien;
 	}
+
 }

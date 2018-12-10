@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+	<h2>Tambah Poli</h2>
+	<form th:action="@{/rawat-jalan/poli/tambah}" th:object="${poli}" method="POST">
+	<h3>Nama: </h3>
+	<input type="text" name="nama"/>
+	<br>
+	<h3>Deskripsi Poli: </h3>
+	<input type="text" name="deskripsi" />
+	<br>
+      <button type="submit">Submit</button>
+	
+	</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Form Lab</title>
+</head>
+<body>
+	<div align="center">
+	<h4>Form Laboratorium</h4>
+			<br>
+			<div th:fragment = "formLab">
+			<form th:action="@{'/rawat-jalan/pasien/penanganan/tambah?idRujukan='+${idRujukan}}" id="formLab" th:object="${penanganan}" method="POST">
+				<table>
+					<input hidden name="jenis" th:value="${jenis}">
+					<tr>
+						<td width="200" height="50" th:text="'Id Pasien Rawat Jalan'"></td>
+						<td th:text="${idRujukan}"></td>
+					</tr>
+					<tr>
+						<td><label for="waktu" height="50">Waktu</label></td>
+						<td><input type="datetime-local" required="required" name="waktu" th:value="${waktu}"/></td>
+					</tr>		
+					<tr>
+            		<td><label for="Jenis Pemeriksaan">Jenis Pemeriksaan</label></td>
+          			  <td>
+                    	<select  class="form-control" required="required" th:field="${penanganan.jenisPemeriksaan}" id="pemeriksaan" th:value=${mapPemeriksaan} form="pemeriksaanForm">
+                        <option th:each="pemeriksaan, rowStat : ${mapPemeriksaan}" th:value="${rowStat.index}" th:text="${mapPemeriksaan.get(__${rowStat.index}__)}"></option>
+                    </select>
+           			 </td>
+       				 </tr>
+					<tr>
+						<td height="50">Deskripsi</td>
+						<td><input type="text"  required="required"name="deskripsi" th:value="*{deskripsi}" /></td>
+					</tr>
+				</table>
+				<br>
+   				<button type="submit" class="btn btn-primary">Submit</button>
+   			</form>
+   			</div>
+   		</div>
+</body>
+</html>
