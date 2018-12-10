@@ -23,7 +23,7 @@
 			<div class = "row">
 				<div class = "col-md-4">
 					<div style = "text-align : center;">
-						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/7B1AF0/list-rich-xxl.png">
+						<img  class = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/7B1AF0/list-rich-xxl.png">
 						<br><br>
 						<h2 style = "color : #7B1AF0; ">
 							Jadwal Poli
@@ -37,7 +37,7 @@
 				
 				<div class = "col-md-4" >
 					<div style = "text-align : center;">
-						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/0100EC/list-rich-xxl.png">
+						<img  class = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/0100EC/list-rich-xxl.png">
 						<br><br>
 						<h2 style = "color : #0100EC; ">
 							Pasien
@@ -51,7 +51,7 @@
 				
 				<div class = "col-md-4">
 					<div style = "text-align : center;">
-						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/FB36F4/list-rich-xxl.png">
+						<img  class = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/FB36F4/list-rich-xxl.png">
 						<br><br>
 						<h2 style = "color : #FB36F4; ">
 							Poli
@@ -66,10 +66,10 @@
 				</div>
 			</div>
 			<br><br>
-			<div class = "row">
+			<!-- <!-- <div class = "row">
 				<div class = "col-md-4">
 					<div style = "text-align : center;">
-						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/1EADF0/list-rich-xxl.png">
+						<img  class = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/1EADF0/list-rich-xxl.png">
 						<br><br>
 						<h2 style = "color : #1EADF0; ">
 							Dokter
@@ -83,7 +83,7 @@
 				
 				<div class = "col-md-4" >
 					<div style = "text-align : center;">
-						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/00D5C6/list-rich-xxl.png">
+						<img  class = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/00D5C6/list-rich-xxl.png">
 						<br><br>
 						<h2 style = "color : #00D5C6; ">
 							Obat
@@ -96,7 +96,7 @@
 				
 				<div class = "col-md-4">
 					<div style = "text-align : center;">
-						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/F04579/list-rich-xxl.png">
+						<img  class = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/F04579/list-rich-xxl.png">
 						<br><br>
 						<h2 style = "color : #F04579; ">
 							Lab
@@ -106,11 +106,16 @@
 						<a class = "btn btn-light" th:href="@{/rawat-jalan/pasien/penanganan}"> Pendaftaran Pemeriksaan Lab </a>
 					</div>
 					<br>
-				</div>
+				</div> --> 
 		</div>
 	
 	</section>
-    
+    <footer style = "text-align : center;">
+    	<div class= "container">
+    		Dibuat dengan penuh <3 oleh kelompok kecil 4
+    	</div>
+    	
+    </footer>
 </body>
 
 <style>
@@ -146,11 +151,28 @@
 		
 	}
 	
-	#gambar-jadwal{
+	img.gambar-jadwal{
 		height : 30px;
 		width : 30px;
 	
 	}
+	
+	.btn {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	
+	.btn:hover{
+    
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
+}
 </style>
 
 </html>
