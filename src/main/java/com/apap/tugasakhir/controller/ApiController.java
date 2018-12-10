@@ -1,5 +1,6 @@
 package com.apap.tugasakhir.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.repository.JadwalPoliDb;
 import com.apap.tugasakhir.rest.BaseResponse;
 import com.apap.tugasakhir.rest.DokterDetail;
-import com.apap.tugasakhir.rest.TanggalDetail;
 import com.apap.tugasakhir.service.ObatService;
 import com.apap.tugasakhir.service.RestService;
 
@@ -59,16 +60,17 @@ public class ApiController {
 	}
 	
 	 @GetMapping(value = "/poli/jadwal/dokter-available")
-	    public BaseResponse<List<DokterDetail>> getAllDokter(@RequestBody @Valid TanggalDetail tanggal, BindingResult bindingResult) throws ParseException {
+	    public BaseResponse<List<DokterDetail>> getAllDokter(@RequestParam Date tanggal) throws ParseException {
 	        List<DokterDetail> dokterAvailable = new ArrayList<DokterDetail>();
 		 	BaseResponse<List<DokterDetail>> response = new BaseResponse<List<DokterDetail>>();
 	        List<DokterDetail> allDokter = restService.getAllDokter();
-	        if (allDokter.size() < 1 || bindingResult.hasErrors()) {
+	        if (allDokter.size() < 1) {
 	            response.setStatus(500);
 	            response.setMessage("error data");
 	        } else {
 	        	for(DokterDetail dokter : allDokter) {
-	        		if(jadwalPoliDb.findByIdAndTanggal(dokter.getId(), tanggal.getTanggal()).size() == 0) {
+	        		if(jadwalPoliDb.findByIdDokterAndTanggal(dokter.getId(), tanggal).size() == 0) {
+	        			System.out.println(dokter.getId());
 	        			dokterAvailable.add(dokter);
 	        		}
 	    	          
