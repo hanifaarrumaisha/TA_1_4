@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apap.tugasakhir.model.ObatModel;
+import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.repository.ObatDb;
 
 @Service
@@ -29,5 +30,10 @@ public class ObatServiceImpl implements ObatService{
 	@Override
 	public List<ObatModel> getListObat(){
 		return obatDb.findAll();
+	}
+	@Override
+	public ObatModel getObatById(int id) {
+		// TODO Auto-generated method stub
+		return obatDb.getOne(id);
 	}
 }
