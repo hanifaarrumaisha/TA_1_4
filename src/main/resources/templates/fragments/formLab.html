@@ -23,14 +23,14 @@
 					<tr>
             		<td><label for="Jenis Pemeriksaan">Jenis Pemeriksaan</label></td>
           			  <td>
-                    	<select  class="form-control" required="required" th:field="${penanganan.jenisPemeriksaan}" id="pemeriksaan" th:value=${mapPemeriksaan} form="pemeriksaanForm">
-                        <option th:each="pemeriksaan, rowStat : ${mapPemeriksaan}" th:value="${rowStat.index}" th:text="${mapPemeriksaan.get(__${rowStat.index}__)}"></option>
+                    	<select  class="form-control" required="required" name="jenisPemeriksaan" id="pemeriksaan">
+                        <option th:each="lab : ${listLab}" th:value="${lab.id}" th:text="${lab.jenis}"></option>
                     </select>
            			 </td>
        				 </tr>
 					<tr>
 						<td height="50">Deskripsi</td>
-						<td><input type="text"  required="required"name="deskripsi" th:value="*{deskripsi}" /></td>
+						<td><input type="text"  required="required" name="deskripsi" th:value="*{deskripsi}" /></td>
 					</tr>
 				</table>
 				<br>

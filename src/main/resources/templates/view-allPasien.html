@@ -32,6 +32,7 @@
      				<th>Tanggal Rujukan</th>
      				<th>Status</th>
      				<th>Update Status</th>
+     				<th>Tambah Penanganan</th>
      			</tr>
      		</thead>
      		
@@ -49,6 +50,9 @@
      				</td>
      				<td>
      					<a class = "btn btn-info" th:href="@{'/rawat-jalan/pasien/ubah?idRujukan='+${rujukan.id}}">Update Status</a>
+     				</td>
+     				<td>
+     					<p style="text-align: center"><a class = "btn btn-info" th:href="@{'/rawat-jalan/pasien/penanganan/tambah?idRujukan='+${rujukan.id}}">Tambah</a></p>
      				</td>
      			</tr>
      		</tbody>

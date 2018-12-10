@@ -70,9 +70,10 @@ public class PenangananServiceImpl implements PenangananService {
 		pemeriksaans.setPasien(penanganan.getRujukanRawatJalan().getIdPasien());
 		String timestamp = penanganan.getWaktu();
 		String date= timestamp.substring(0,9);
-		Date date1=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(date); 
-		//Date date = new Date(penanganan.getWaktu().getTime());
-		pemeriksaans.setWaktu(date1);
+		java.util.Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date); 
+		java.sql.Date sql = new java.sql.Date(date1.getTime());
+		//Date date = new Date(penanganan.getWakttu().getTime());
+		pemeriksaans.setWaktu(sql);
 		
 		String pemeriksaan = restTemplate.postForObject(Setting.siLab+ "/lab/pemeriksaan/permintaan", pemeriksaans, String.class);
 		return pemeriksaan;
