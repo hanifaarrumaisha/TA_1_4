@@ -15,11 +15,13 @@
 	<br>
 	<div class = "container-fluid">
 		<br>
-		<h2>Daftar Pasien Rawat Jalan</h2>
+		<h2 style = "text-align : center; color : #7B1AF0;">
+			Daftar Pasien Rawat Jalan
+		</h2>
 	</div>
 	
 	<hr>
-	<div>
+	<div class = "container">
 		<table id="tablePasien" class="table table-striped table-bordered">
      		<thead>
      			<tr>	
@@ -46,7 +48,7 @@
      					<span th:case=3>Selesai</span>
      				</td>
      				<td>
-     					<a th:href="@{'/rawat-jalan/pasien/ubah?idRujukan='+${rujukan.id}}">Update Status</a>
+     					<a class = "btn btn-info" th:href="@{'/rawat-jalan/pasien/ubah?idRujukan='+${rujukan.id}}">Update Status</a>
      				</td>
      			</tr>
      		</tbody>
@@ -59,9 +61,17 @@
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 	
 </body>
+
+<style>
+	a.btn-info{
+		background-color : #7B1AF0;
+		border : none;
+	}
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 	    $('#tablePasien').DataTable();
 	} );
 </script>
+
 </html>

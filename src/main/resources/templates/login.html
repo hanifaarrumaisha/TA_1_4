@@ -9,15 +9,17 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <h2>Hello</h2>
+    <div class="container"	>
+	    <h1 id="title">
+		 	Sistem Informasi Rawat Jalan.
+		 </h1>
         <div class="row">
             <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
+                <div class="card" style = "border : none; box-shadow: 0px 4px 4px #C4C4C4;">
+                    <div class="card-header" style = "background: #7B1AF0; color : white;">
                         Log In
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id = "form-login">
                         <div th:if="${param.error}">
                             <span style="color: red">Invalid username or password</span>
                         </div>
@@ -30,7 +32,7 @@
                                 <label class="col-sm-4">Password:</label>
                                 <input type="password" class="col-sm-8 form-control input-sm" name="password">
                             </div>
-                            <div class="row form-group">
+                            <div class="row form-group" style = "text-align">
                                 <button type="submit" class="btn btn-primary">Sign In</button>
                             </div>
                         </form>
@@ -39,6 +41,44 @@
             </div>
         </div>
     </div>
+    <div id = "gambar">
+    
+    </div>
 </body>
 
+<style>
+	#title{
+
+		height: 47px;
+		
+		top: 30px;
+		
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 900;
+		line-height: normal;
+		font-size: 30px;
+		
+		color: #374050;
+	}
+	
+	#about-us{
+		
+		width: 124px;
+		height: 36px;
+		top: 35px;
+		font-family: Roboto;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+		font-size: 20px;
+		text-align: right;
+		
+		color: #374050;
+		
+	}
+	
+	
+
+</style>
 </html>
