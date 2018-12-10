@@ -23,11 +23,11 @@ public class ObatModel implements Serializable {
 	
 	@NotNull
 	@Size(max = 255)
-	@Column (name = "nama", nullable = false)
+	@Column (name = "nama", nullable = false, unique = true)
 	private String nama;
 	
 	@NotNull
-	@Column (name = "jumlah", nullable = false, unique = true)
+	@Column (name = "jumlah", nullable = false)
 	private int jumlah;
 	
 	public int getId() {
