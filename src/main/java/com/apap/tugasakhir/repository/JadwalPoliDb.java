@@ -16,4 +16,5 @@ import com.apap.tugasakhir.rest.PasienRujukanDetail;
 public interface JadwalPoliDb extends JpaRepository<JadwalPoliModel, Integer> {
 	List<DokterDetail> findByIdAndTanggal(int id, Date tanggal);
 	List<JadwalPoliModel> findByPoliIdAndTanggalGreaterThanEqualOrderByTanggalDesc(int idPoli, Date tanggal);
+	JadwalPoliModel findById(int id);
 }

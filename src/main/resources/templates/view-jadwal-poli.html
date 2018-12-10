@@ -4,21 +4,28 @@
 <head>
 	<meta charset="utf-8" />
 	<link href = "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
-	<link href = "https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+	<link href = "https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">	
+	<script src = "https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+	<script src = "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src = "https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+	
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<div class = "container-fluid">
+
+	<div class = "container">
 		<br>
-		<h2>Jadwal Poli</h2>
+		<h2 style = "text-align : center; color : #7B1AF0;">
+			Jadwal Poli
+		</h2>
 	</div>
 	
 	<hr>
-	<div>
-		<table class="table table-striped table-bordered">
+	<div class = "container">
+		<table id="example" class="table table-striped table-bordered" style="width:100%">
      		<thead>
      			<tr>	
      				<th>Nama Poli</th>
@@ -27,17 +34,21 @@
      				<th>Tanggal</th>
      				<th>Jam Mulai</th>
      				<th>Jam Selesai</th>
+     				<th>Ubah Jadwal Dokter Poli</th>
      			</tr>
      		</thead>
      		
      		<tbody>
-     			<tr  th:each  = "listJadwalPoli : ${listJadwalPoli}" >
-     				<td th:text="${listJadwalPoli.poli.nama}"></td>
-     				<td th:text="${mapDokter[__listJadwalPoli.id__].nama}"></td>
-     				<td th:text="${mapHari[__listJadwalPoli.id__].hari}"></td>
-     				<td th:text="${listJadwalPoli.tanggal}"></td>
-     				<td th:text="${listJadwalPoli.jamMulai}"></td>
-     				<td th:text="${listJadwalPoli.jamSelesai}"></td>
+     			<tr  th:each  = "jadwalPoli : ${listJadwalPoli}" >
+     				<td th:text="${jadwalPoli.poli.nama}"></td>
+     				<td th:text="${mapDokter[__jadwalPoli.id__].nama}"></td>
+     				<td th:text="${mapHari[__jadwalPoli.poli.id__].hari}"></td>
+     				<td th:text="${jadwalPoli.tanggal}"></td>
+     				<td th:text="${jadwalPoli.jamMulai}"></td>
+     				<td th:text="${jadwalPoli.jamSelesai}"></td>
+     				<td>
+     					<a class = "btn btn-info"  th:href="@{'/rawat-jalan/poli/jadwal/ubah/' + ${jadwalPoli.id}}" >Update Jadwal Poli</a>
+     				</td>
      			</tr>
      		</tbody>
 	    
@@ -46,7 +57,14 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-	    $('#tableJabatan').DataTable();
+	    $('#example').DataTable();
 	} );
-</script>
+</script>	
+
+<style>
+	a.btn-info{
+		background-color : #7B1AF0;
+		border : none;
+	}
+</style>
 </html>

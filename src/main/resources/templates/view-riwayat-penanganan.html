@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	</head>
 	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
 		<br>
 		<table id="penanganan">
 		    <thead>
@@ -27,7 +28,7 @@
           		    <td th:text="${penanganan.rujukanRawatJalan.namaPasien}"></td>
           		    <td th:text="${penanganan.rujukanRawatJalan.jadwalPoli.poli.nama}"></td>
          		    <td th:text="${penanganan.waktu}"></td>
-         		    <td th:text="${penanganan.obat} ? ${penanganan.obat.nama} : 'Pemeriksaan Lab'"></td>
+         		    <td th:text="${penanganan.obat} ? ${penanganan.obat.nama} : ${mapPemeriksaan.get(__${penanganan.jenisPemeriksaan}__)}"></td>
          		    <td th:text="${penanganan.deskripsi}"></td>
 		        </tr>
 		    </tbody>

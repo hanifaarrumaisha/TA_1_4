@@ -68,7 +68,7 @@ public class ApiController {
 	            response.setMessage("error data");
 	        } else {
 	        	for(DokterDetail dokter : allDokter) {
-	        		if(jadwalPoliDb.findByIdAndTanggal(dokter.getId(), tanggal.getTanggal()).size() >0) {
+	        		if(jadwalPoliDb.findByIdAndTanggal(dokter.getId(), tanggal.getTanggal()).size() == 0) {
 	        			dokterAvailable.add(dokter);
 	        		}
 	    	          
@@ -79,4 +79,5 @@ public class ApiController {
 	        }
 	        return response;
 	    }
+	
 }

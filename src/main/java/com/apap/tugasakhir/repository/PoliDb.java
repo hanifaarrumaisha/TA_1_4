@@ -5,5 +5,4 @@ import com.apap.tugasakhir.model.PoliModel;
 
 @Repository
 public interface PoliDb  extends JpaRepository<PoliModel, Integer>{
-
 }

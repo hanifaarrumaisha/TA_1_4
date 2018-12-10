@@ -9,10 +9,148 @@
 </head>
 
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-
-    <div class="container-fluid">
-        <h2 th:text=" 'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
-    </div>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+   
+    <div class="jumbotron" style = "background : white;">
+	  <h2 th:text=" 'Hai, '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
+	  <p class="lead">Selamat Datang di Sistem Informasi Rawat Jalan</p>
+	  <hr class="my-4">
+	  <p>Project ini dibuat untuk mata kuliah APAP. Semoga kita semua bisa lulus APAP, aamiin :)</p>
+	  
+	</div>
+	<section id = "list-fitur">
+		<div class = "container">
+			<div class = "row">
+				<div class = "col-md-4">
+					<div style = "text-align : center;">
+						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/7B1AF0/list-rich-xxl.png">
+						<br><br>
+						<h2 style = "color : #7B1AF0; ">
+							Jadwal Poli
+						</h2>
+					</div><br>
+					<div  style = "text-align : center;" >
+						<a class = "btn btn-primary" th:href="@{/rawat-jalan/poli/jadwal/tambah}"> Tambah Jadwal Poli </a>
+						<a class = "btn btn-primary" th:href="@{/rawat-jalan/poli/jadwal/}"> Lihat Jadwal Poli </a>
+					</div>
+				</div>
+				
+				<div class = "col-md-4" >
+					<div style = "text-align : center;">
+						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/0100EC/list-rich-xxl.png">
+						<br><br>
+						<h2 style = "color : #0100EC; ">
+							Pasien
+						</h2>
+					</div><br>
+					<div style = "text-align : center;">
+						<a class = "btn btn-info" th:href="@{/rawat-jalan/pasien}"> Lihat Pasien </a>
+						<a class = "btn btn-info" th:href="@{/rawat-jalan/pasien/penanganan}"> Lihat Riwayat Pasien </a>
+					</div>
+				</div>
+				
+				<div class = "col-md-4">
+					<div style = "text-align : center;">
+						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/FB36F4/list-rich-xxl.png">
+						<br><br>
+						<h2 style = "color : #FB36F4; ">
+							Poli
+						</h2>
+					</div><br>
+					<div style = "text-align : center;">
+						<a class = "btn btn-danger" th:href="@{/rawat-jalan/poli/tambah}"> Tambah Poli </a>
+						<a class = "btn btn-danger" th:href="@{/rawat-jalan/poli}"> Lihat Poli </a>
+						<a class = "btn btn-danger" th:href="@{/rawat-jalan/poli/ubah}"> Ubah Poli </a>
+					</div>
+					<br>
+				</div>
+			</div>
+			<br><br>
+			<div class = "row">
+				<div class = "col-md-4">
+					<div style = "text-align : center;">
+						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/1EADF0/list-rich-xxl.png">
+						<br><br>
+						<h2 style = "color : #1EADF0; ">
+							Dokter
+						</h2>
+					</div><br>
+						
+					<div style= "text-align : center;">
+						<a class = "btn btn-success" th:href="@{/rawat-jalan/poli/jadwal/dokter-available/}"> Ketersediaan Dokter </a>
+					</div><br>
+				</div>
+				
+				<div class = "col-md-4" >
+					<div style = "text-align : center;">
+						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/00D5C6/list-rich-xxl.png">
+						<br><br>
+						<h2 style = "color : #00D5C6; ">
+							Obat
+						</h2>
+					</div><br>
+					<div style = "text-align : center;">
+						<a class = "btn btn-warning" th:href="@{/rawat-jalan/obat/tambah}"> Tambah Obat </a>
+					</div>
+				</div>
+				
+				<div class = "col-md-4">
+					<div style = "text-align : center;">
+						<img  id = "gambar-jadwal" src="https://www.iconsdb.com/icons/preview/color/F04579/list-rich-xxl.png">
+						<br><br>
+						<h2 style = "color : #F04579; ">
+							Lab
+						</h2>
+					</div><br>
+					<div style = "text-align : center;">
+						<a class = "btn btn-light" th:href="@{/rawat-jalan/pasien/penanganan}"> Pendaftaran Pemeriksaan Lab </a>
+					</div>
+					<br>
+				</div>
+		</div>
+	
+	</section>
+    
 </body>
+
+<style>
+	.btn-primary{
+		background-color : #7B1AF0;
+		border : none;
+	}
+	
+	.btn-danger{
+		background-color : #FB36F4;
+		border : none;
+	}
+	
+	.btn-info{
+		background-color : #0100EC;
+		border : none;
+	}
+	
+	.btn-success{
+		background-color : #1EADF0;
+		border : none;
+	}
+	
+	.btn-warning{
+		background-color : #00D5C6;
+		border : none;
+		color : white;
+	}
+	.btn-light{
+		background-color : #F04579;
+		border : none;
+		color : white;
+		
+	}
+	
+	#gambar-jadwal{
+		height : 30px;
+		width : 30px;
+	
+	}
+</style>
+
 </html>

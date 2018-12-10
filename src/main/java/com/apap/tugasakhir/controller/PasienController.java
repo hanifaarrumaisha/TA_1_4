@@ -2,12 +2,14 @@ package com.apap.tugasakhir.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.apap.tugasakhir.model.RujukanRawatJalanModel;
@@ -19,7 +21,7 @@ import com.apap.tugasakhir.service.RujukanService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-@RestController
+@Controller
 @RequestMapping("/rawat-jalan/pasien")
 public class PasienController {
 	@Autowired
@@ -33,23 +35,12 @@ public class PasienController {
 	
 	RujukanRawatJalanModel rujukanRawatJalanModel;
 		
-	@RequestMapping("/getAllPasien")
-	public List<PasienRujukanDetail> getAllPasien() throws ParseException, JsonParseException, JsonMappingException, IOException {
-		// get from SiAppointment
-		String urlApp = Setting.siApp+"/4/getAllPasienRawatJalan/";
-		String responseApp = restService.getRest(urlApp);
-		ArrayList<PasienRujukanDetail> listPasien = (ArrayList<PasienRujukanDetail>) restService.parsePasienRujukan(responseApp);
-		for (PasienRujukanDetail pasien : listPasien) {
-			System.out.println("masuk");
-			rujukanService.validateRujukan(pasien);
-		}
-		
-		// get from SiIGD
-		String urlIGD = Setting.siIGD+"/rujukan";
-		String responseIGD = restService.getRest(urlIGD);
-		// TODO buat parse data pasien dari IGD di RestService
-		// TODO ubah ke pasienRujukanDetail
-		return listPasien;
+	@RequestMapping("")
+	public String getAllPasien(Model model) throws ParseException, JsonParseException, JsonMappingException, IOException {
+		rujukanService.getAllPasienRujukan();
+		ArrayList<RujukanRawatJalanModel> allRujukan = (ArrayList<RujukanRawatJalanModel>) rujukanService.getAllRujukan();
+		model.addAttribute("allRujukan", allRujukan);
+		return "view-allPasien";
 	}
 	
 	
