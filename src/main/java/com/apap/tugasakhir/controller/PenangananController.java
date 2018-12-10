@@ -67,7 +67,7 @@ public class PenangananController {
 	private PenangananDb penangananDb;
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.GET)
-	private String pageAddPenanganan(@RequestParam(value ="idRujukan") Long idRujukan, @RequestParam("jenis") Optional<String> jenis, Model model) throws ParseException {
+	private String pageAddPenanganan(@RequestParam(value ="idRujukan") Long idRujukan, @RequestParam("jenis") Optional<Integer> jenis, Model model) throws ParseException {
 		if(jenis.isPresent()) {
 			//model.addAttribute("penanganan", penanganan);
 			model.addAttribute("idRujukan", idRujukan);
@@ -77,15 +77,16 @@ public class PenangananController {
 			rujukan.setId(idRujukan);
 			penanganan.setRujukanRawatJalan(rujukan);
 			model.addAttribute("penanganan", penanganan);
-			
+			Map<Integer, String> mapPemeriksaan1 = penangananService.getDataPemeriksaan();
+			System.out.println(mapPemeriksaan1.size());
 			System.out.print("ini jenis: "+jenis);
-			if(jenis.get().equals("obat")) {
+			if(jenis.get() == 1) {
 				penanganan.setJenisPemeriksaan(null);
 				List<ObatModel> listObat = obatService.getListObat();
 				model.addAttribute("listObat", listObat);
 				System.out.println("size obat: "+listObat.size());
 			}
-			else if(jenis.get().equals("pemeriksaan")) {
+			else if(jenis.get() == 2) {
 				penanganan.setObat(null);
 				Map<Integer, String> mapPemeriksaan = penangananService.getDataPemeriksaan();
 				model.addAttribute("mapPemeriksaan", mapPemeriksaan);
@@ -100,27 +101,24 @@ public class PenangananController {
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.POST)
 	private String addPenanganan(@RequestParam(value ="idRujukan") Long idRujukan,
-			@RequestParam("jenis") Optional<String> jenis,
+			@RequestParam("jenis") Optional<Integer> jenis,
 			@ModelAttribute PenangananModel penanganan, Model model) throws ParseException{
-		//System.out.println("idrujukan: " + idRujukan);
 		model.addAttribute("idRujukan", idRujukan);
-		System.out.println("jenis: " + jenis);
-		System.out.println("masuk");
-
 		RujukanRawatJalanModel rujukan = rujukanService.getRujukanById(idRujukan);
 		penanganan.setRujukanRawatJalan(rujukan);
-		/**
-		if(jenis.get().equals("obat")) {
+		System.out.println("jenis lab: " + penanganan.getJenisPemeriksaan());			
+		if(jenis.get() == 1) {
+			System.out.println("masuk obat");
 			penangananService.addPenanganan(penanganan);
 			
 		}
-		else if(jenis.get()== "pemeriksaan") {
+		else if(jenis.get() == 2){
+			System.out.println(penanganan.getDeskripsi());
+			
 			penangananService.addPenanganan(penanganan);
 			
 		}
-		**/
-		penangananService.addPenanganan(penanganan);
-		System.out.println("jenis"+ jenis);		
+		System.out.println("jenis"+ jenis.get());		
 		return "SubmitJenisSuccess";
 		/*
 		penangananService.addPenanganan(penanganan);

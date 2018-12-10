@@ -29,8 +29,8 @@
 										
 											<td><select class="form-control" required="required" name="jenis">
 													<option value="">Pilih Jenis Penanganan</option>
-													<option value="obat" >Obat</option>
-													<option value="pemeriksaan" >Laboratorium</option>
+													<option value="1" >Obat</option>
+													<option value="2" >Laboratorium</option>
 													
 											</select></td>
 										</tr>
@@ -39,8 +39,8 @@
 									 <p style="text-align: center"><button type="submit" class="btn btn-primary">Isi Form Penanganan</button></p>
 								</div> 
 							</form>
-							<div th:replace="${jenis == 'obat'} ? ~{fragments/formObat ::${formObat}} :~{}"></div>
-							<div th:replace="${jenis == 'pemeriksaan'} ? ~{fragments/formLab ::${formLab}} :~{}"></div>
+							<div th:replace="${jenis == 1} ? ~{fragments/formObat ::${formObat}} :~{}"></div>
+							<div th:replace="${jenis == 2} ? ~{fragments/formLab ::${formLab}} :~{}"></div>
 						</div>
 					</div>
 				</div>

@@ -11,6 +11,7 @@
 			<div th:fragment = "formLab">
 			<form th:action="@{'/rawat-jalan/pasien/penanganan/tambah?idRujukan='+${idRujukan}}" id="formLab" th:object="${penanganan}" method="POST">
 				<table>
+					<input hidden name="jenis" th:value="${jenis}">
 					<tr>
 						<td width="200" height="50" th:text="'Id Pasien Rawat Jalan'"></td>
 						<td th:text="${idRujukan}"></td>
@@ -22,7 +23,7 @@
 					<tr>
             		<td><label for="Jenis Pemeriksaan">Jenis Pemeriksaan</label></td>
           			  <td>
-                    	<select  class="form-control" required="required" name="pemeriksaan" id="pemeriksaan" form="pemeriksaanForm">
+                    	<select  class="form-control" required="required" th:field="${penanganan.jenisPemeriksaan}" id="pemeriksaan" th:value=${mapPemeriksaan} form="pemeriksaanForm">
                         <option th:each="pemeriksaan, rowStat : ${mapPemeriksaan}" th:value="${rowStat.index}" th:text="${mapPemeriksaan.get(__${rowStat.index}__)}"></option>
                     </select>
            			 </td>
