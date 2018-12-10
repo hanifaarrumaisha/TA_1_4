@@ -17,7 +17,7 @@
 <body>
 
 <div th:fragment="navbar" >
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background : linear-gradient(90deg, #FFE031 -5.38%, #0100EC -5.38%, #7B1AF0 39.64%, #FB36F4 87.22%);
+    <nav id= "navbar-up" class="navbar navbar-expand-lg navbar-dark" style="background : linear-gradient(90deg, #FFE031 -5.38%, #0100EC -5.38%, #7B1AF0 39.64%, #FB36F4 87.22%);
 opacity: 0.6;">
         <a class="navbar-brand" href="#">SI Rawat Jalan</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,6 +45,10 @@ opacity: 0.6;">
 <style>
 	.nav-link{
 		color : white;
+	}
+	
+	#navbar-up {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 	}
 
 </style>

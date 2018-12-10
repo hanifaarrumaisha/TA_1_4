@@ -48,10 +48,10 @@ public class JadwalPoliController {
 	}
 	
 	@RequestMapping(value = "/tambah" , method = RequestMethod.POST)
-	private String addJadwalSubmit(@ModelAttribute JadwalPoliModel jadwalPoli , Model model) {
+	private String addJadwalSubmit(@ModelAttribute JadwalPoliModel jadwalPoli , RedirectAttributes ra,Model model) {
 		jadwalPoliService.addJadwalPoli(jadwalPoli);
-		model.addAttribute("title", "Add Successfull");
-		return "add-success";
+		ra.addFlashAttribute("Message", "Sukses ditambahkan");
+		return "redirect:/rawat-jalan/poli/jadwal/tambah";
 	}
 	
 	@RequestMapping(value = "" , method = RequestMethod.GET)
