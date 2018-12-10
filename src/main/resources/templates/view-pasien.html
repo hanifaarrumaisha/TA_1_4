@@ -45,28 +45,6 @@
 			</div>
 	</div>
 	
-		<div class="col-md-6">
-				<div class="card">
-					<div class="card-header">
-						Tambah Penanganan
-					</div>
-					<form th:action="@{/rawat-jalan/pasien/1}" th:object="${pasien}" method="POST">
-						<div class="card-body">
-							<label>Jenis Penanganan:</label>
-								<select  class="form-control" required="required" th:name="penanganan">
-							     	<option value="Obat" >Obat </option>
-							     	<option value="Pemeriksaan Lab">Pemeriksaan Lab</option>
-						    	</select>
-							<p></p>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			
-
-     
-
 </body>
 
 </html>

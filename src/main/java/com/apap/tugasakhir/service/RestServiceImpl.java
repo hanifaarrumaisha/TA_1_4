@@ -186,8 +186,6 @@ public class RestServiceImpl implements RestService{
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(response);
 		JSONArray res = (JSONArray) json.get("result");
-		System.out.println(res);
-
 		ArrayList<PasienRujukanDetail> allPasien = new ArrayList<PasienRujukanDetail>();
 		
 		Iterator i = res.iterator();

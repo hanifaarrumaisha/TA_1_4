@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+	<div class="container-fluid">
+	<h2>Tambah Poli</h2>
+	<form th:action="@{/rawat-jalan/poli/tambah-hari}" method="POST">
+	<h3 th:text="'Id : ' + ${poli.id}"></h3>
+	<h3 th:text="'Nama : ' + ${poli.nama}"></h3>
+	<h3 th:text="'Deskripsi : ' + ${poli.deskripsi}"></h3>
+	<br>
+	<h3>Hari Poli: </h3>
+	<div class="form-group">
+		<ul>
+			<li th:each="hari, iterStat:${daftarHari}">
+				<input type="checkbox" name="listHariTerpilih" th:value="${hari}" />
+				<label th:for="${iterStat.index}"
+						th:text="${hari}">Hari</label>
+			</li>
+		</ul>
+		
+	</div>
+	<br>
+      <button type="submit">Submit</button>
+	
+	</form>
+	</div>
+</body>
+</html>
