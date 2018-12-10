@@ -21,6 +21,12 @@ public class UserRoleController {
 	@Autowired
 	private UserRoleService userService;
 	
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	private String addUser() {
+		return "add-user";
+	}
+	
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	private String addUserSubmit(@ModelAttribute UserRoleModel user, RedirectAttributes ra) {
 		if (userService.validatePassword(user.getPassword())) {
