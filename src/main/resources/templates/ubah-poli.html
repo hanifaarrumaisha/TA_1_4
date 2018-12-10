@@ -20,6 +20,16 @@
 			<label>Deskripsi Poli: </label>
 			<input type="text" th:value="${poli.deskripsi}" name="deskripsi" class="form-control" id="deskripsi"/>
 		</div>
+		<div class="form-group">
+			<ul>
+				<li th:each="hari, iterStat:${daftarHari}">
+					<input type="checkbox" name="listHariTerpilih" th:value="${hari}" th:checked="${#arrays.contains(tempArray, hari)}"/>
+					<label th:for="${iterStat.index}"
+							th:text="${hari}">Hari</label>
+				</li>
+			</ul>
+			
+		</div>
 		
 	      <button type="submit">Submit</button>
 		
