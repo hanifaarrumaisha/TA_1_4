@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.apap.tugasakhir.model.ObatModel;
 import com.apap.tugasakhir.model.PenangananModel;
+import com.apap.tugasakhir.model.RujukanRawatJalanModel;
 import com.apap.tugasakhir.repository.PenangananDb;
 import com.apap.tugasakhir.service.ObatService;
 import com.apap.tugasakhir.service.PenangananService;
 import com.apap.tugasakhir.service.RestService;
+import com.apap.tugasakhir.service.RujukanService;
 
 
 @Controller
@@ -38,6 +39,9 @@ public class PenangananController {
 	
 	@Autowired
 	private RestService restService;
+	
+	@Autowired
+	private RujukanService rujukanService;
 			
 	@GetMapping()
 	public String viewAllPenanganan(Model model) throws ParseException {
@@ -49,8 +53,8 @@ public class PenangananController {
         System.out.println(date);  
 		
 		for(PenangananModel haha : listPenanganan) {
-			Date datez = new Date(haha.getWaktu().getTime());
-			System.out.println(datez);
+//			Date datez = new Date(haha.getWaktu().getTime());
+//			System.out.println(datez);
 		}
 		
 		model.addAttribute("mapPemeriksaan", mapPemeriksaan);
@@ -62,27 +66,62 @@ public class PenangananController {
 
 	private PenangananDb penangananDb;
 	
-	@RequestMapping(value = "/tambah/", method = RequestMethod.GET)
-	private String pageAddPenanganan(@RequestParam(value ="idRujukan") Long idRujukan, @RequestParam("jenis") Optional<String> jenis, Model model) {
-		model.addAttribute("penanganan", new PenangananModel());
+	@RequestMapping(value = "/tambah", method = RequestMethod.GET)
+	private String pageAddPenanganan(@RequestParam(value ="idRujukan") Long idRujukan, @RequestParam("jenis") Optional<String> jenis, Model model) throws ParseException {
 		if(jenis.isPresent()) {
+			//model.addAttribute("penanganan", penanganan);
+			model.addAttribute("idRujukan", idRujukan);
 			model.addAttribute("jenis", jenis.get());
+			PenangananModel penanganan= new PenangananModel();
+			RujukanRawatJalanModel rujukan = rujukanService.getRujukanById(idRujukan);
+			rujukan.setId(idRujukan);
+			penanganan.setRujukanRawatJalan(rujukan);
+			model.addAttribute("penanganan", penanganan);
+			
+			System.out.print("ini jenis: "+jenis);
+			if(jenis.get().equals("obat")) {
+				penanganan.setJenisPemeriksaan(null);
+				List<ObatModel> listObat = obatService.getListObat();
+				model.addAttribute("listObat", listObat);
+				System.out.println("size obat: "+listObat.size());
+			}
+			else if(jenis.get().equals("pemeriksaan")) {
+				penanganan.setObat(null);
+				Map<Integer, String> mapPemeriksaan = penangananService.getDataPemeriksaan();
+				model.addAttribute("mapPemeriksaan", mapPemeriksaan);
+			}
 		}
 		else {
+			model.addAttribute("idRujukan", idRujukan);
 			model.addAttribute("jenis", jenis);
 		}
 		return "add-ObatLab";
 	}
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.POST)
-	private String addJabatan(@RequestParam("jenis") Optional<String> jenis, @ModelAttribute PenangananModel penanganan, RedirectAttributes redirectAtt, Model model) throws ParseException{
+	private String addPenanganan(@RequestParam(value ="idRujukan") Long idRujukan,
+			@RequestParam("jenis") Optional<String> jenis,
+			@ModelAttribute PenangananModel penanganan, Model model) throws ParseException{
+		//System.out.println("idrujukan: " + idRujukan);
+		model.addAttribute("idRujukan", idRujukan);
+		System.out.println("jenis: " + jenis);
+		System.out.println("masuk");
+
+		RujukanRawatJalanModel rujukan = rujukanService.getRujukanById(idRujukan);
+		penanganan.setRujukanRawatJalan(rujukan);
+		/**
+		if(jenis.get().equals("obat")) {
+			penangananService.addPenanganan(penanganan);
+			
+		}
+		else if(jenis.get()== "pemeriksaan") {
+			penangananService.addPenanganan(penanganan);
+			
+		}
+		**/
 		penangananService.addPenanganan(penanganan);
-		System.out.println("jenis"+ jenis);
-		List<ObatModel> listObat = obatService.getListObat();
-		model.addAttribute("listObat", listObat);
-		Map<Integer,String> mapPemeriksaan = penangananService.getDataPemeriksaan();
-		
-		return "SubmitJenisSucces";
+		System.out.println("jenis"+ jenis);		
+		return "SubmitJenisSuccess";
 		/*
 		penangananService.addPenanganan(penanganan);
 		String message = "Penanganan " + " berhasil ditambah";

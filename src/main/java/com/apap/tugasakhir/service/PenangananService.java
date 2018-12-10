@@ -27,7 +27,7 @@ public interface PenangananService {
 
 
 
-	String postPenanganan(PenangananModel penanganan);
+	String postPenanganan(PenangananModel penanganan) throws java.text.ParseException;
 
 
 

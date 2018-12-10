@@ -5,35 +5,41 @@
     <title>Form Obat</title>
 </head>
 <body>
-	<h3>Tambah Penanganan Obat</h3>
+	<div align="center">
+	<h4>Form Obat</h4>
 			<br>
 			<div th:fragment = "formObat">
-			<form th:action="@{/rawat-jalan/pasien/penanganan/tambah}" id="obatForm" th:object="${penanganan}" method="POST">
+			
+			<form th:action="@{'/rawat-jalan/pasien/penanganan/tambah?idRujukan='+${idRujukan}}" id="obatForm" th:object="${penanganan}" method="POST">
 				<table>
+					<input hidden name="jenis" th:value="${jenis}">
 					<tr>
 						<td width="200" height="50" th:text="'Id Pasien'"></td>
-						<td th:text="${id_rujukan_rawat_jalan}"></td>
-					</tr>
+						<td th:text="${idRujukan}"></td>
+					</tr> 
 					<tr>
 						<td><label for="waktu" height="50">Waktu</label></td>
-						<td><input type="datetime" required="required" name="waktu" th:value="${waktu}"/></td>
+						<td><input type="datetime-local" required="required" name="waktu" th:value="${waktu}"/></td>
 					</tr>		
 					<tr>
             		<td><label for="obat">Obat</label></td>
           			  <td>
-                    	<select  class="form-control" required="required" name="obat" id="obat" th:value="*{obat}" form="obatForm">
+                    	<select  class="form-control" name="obat" id="obat" form="obatForm">
                         <option th:each="obat : ${listObat}" th:value="${obat.id}" th:text="${obat.nama}"></option>
                     </select>
            			 </td>
        				 </tr>
 					<tr>
 						<td height="50">Deskripsi</td>
-						<td><input type="text"  required="required"name="deskripsi" th:value="*{deskripsi}" /></td>
+						<td><input type="text" name="deskripsi" th:value="*{deskripsi}" /></td>
 					</tr>
 				</table>
 				<br>
    				<button type="submit" class="btn btn-primary">Submit</button>
    			</form>
    			</div>
+   			
+   			</div>
+   			
 </body>
 </html>

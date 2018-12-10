@@ -5,24 +5,25 @@
     <title>Form Lab</title>
 </head>
 <body>
-	<h3>Tambah Penanganan Laboraturium</h3>
+	<div align="center">
+	<h4>Form Laboratorium</h4>
 			<br>
 			<div th:fragment = "formLab">
-			<form th:action="@{/rawat-jalan/pasien/penanganan/tambah}" id="formLab" th:object="${penanganan}" method="POST">
+			<form th:action="@{'/rawat-jalan/pasien/penanganan/tambah?idRujukan='+${idRujukan}}" id="formLab" th:object="${penanganan}" method="POST">
 				<table>
 					<tr>
 						<td width="200" height="50" th:text="'Id Pasien Rawat Jalan'"></td>
-						<td th:text="${id_rujukan_rawat_jalan}"></td>
+						<td th:text="${idRujukan}"></td>
 					</tr>
 					<tr>
 						<td><label for="waktu" height="50">Waktu</label></td>
-						<td><input type="datetime" required="required" name="waktu" th:value="${waktu}"/></td>
+						<td><input type="datetime-local" required="required" name="waktu" th:value="${waktu}"/></td>
 					</tr>		
 					<tr>
             		<td><label for="Jenis Pemeriksaan">Jenis Pemeriksaan</label></td>
           			  <td>
-                    	<select  class="form-control" required="required" name="pemeriksaan" id="pemeriksaan" th:value="*{penanganan.jenis_pemeriksaan.nama}" form="pemeriksaanForm">
-                        <option th:each="pemeriksaan : ${listPemeriksaan}" th:value="${pemeriksaan.id}" th:text="${pemeriksaan.nama}"></option>
+                    	<select  class="form-control" required="required" name="pemeriksaan" id="pemeriksaan" form="pemeriksaanForm">
+                        <option th:each="pemeriksaan, rowStat : ${mapPemeriksaan}" th:value="${rowStat.index}" th:text="${mapPemeriksaan.get(__${rowStat.index}__)}"></option>
                     </select>
            			 </td>
        				 </tr>
@@ -35,5 +36,6 @@
    				<button type="submit" class="btn btn-primary">Submit</button>
    			</form>
    			</div>
+   		</div>
 </body>
 </html>
