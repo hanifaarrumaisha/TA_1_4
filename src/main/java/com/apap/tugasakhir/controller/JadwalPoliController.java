@@ -48,10 +48,11 @@ public class JadwalPoliController {
 	}
 	
 	@RequestMapping(value = "/tambah" , method = RequestMethod.POST)
-	private String addJadwalSubmit(@ModelAttribute JadwalPoliModel jadwalPoli , Model model) {
+	private String addJadwalSubmit(@ModelAttribute JadwalPoliModel jadwalPoli , RedirectAttributes ra,Model model) {
 		jadwalPoliService.addJadwalPoli(jadwalPoli);
-		model.addAttribute("title", "Add Successfull");
-		return "add-success";
+		ra.addFlashAttribute("alertText", "Sukses ditambahkan");
+		ra.addFlashAttribute("alert", "alert-blue");
+		return "redirect:/rawat-jalan/poli/jadwal/tambah";
 	}
 	
 	@RequestMapping(value = "" , method = RequestMethod.GET)
@@ -89,18 +90,20 @@ public class JadwalPoliController {
 	}
 	
 	@RequestMapping(value = "/ubah/{idJadwalPoli}" , method = RequestMethod.POST)
-	private String ubahJadwalPoli (@PathVariable (value = "idJadwalPoli") int idJadwalPoli , JadwalPoliModel jadwalPoli, Model model) throws java.text.ParseException {
+	private String ubahJadwalPoli (@PathVariable (value = "idJadwalPoli") int idJadwalPoli , JadwalPoliModel jadwalPoli,  RedirectAttributes ra, Model model) throws java.text.ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date dateNow = sdf.parse(java.time.LocalDate.now().toString());
         Date dateJadwalPoli = sdf.parse(jadwalPoli.getTanggal().toString());
 		
         if (dateNow.before(dateJadwalPoli)) {
         	jadwalPoliService.updateJadwalPoli(jadwalPoli, idJadwalPoli);
-    		model.addAttribute("title", "update success");
-    		return "update-jadwal-poli-success";
+        	ra.addFlashAttribute("alertText", "Sukses Diubah");
+    		ra.addFlashAttribute("alert", "alert-blue");
+    		return "redirect:/rawat-jalan/poli/jadwal/ubah/{idJadwalPoli}";
         }else {
-        	model.addAttribute("title", "Gagal update");
-    		return "update-jadwal-poli-success";
+        	ra.addFlashAttribute("alertText", "Gagal Diubah");
+    		ra.addFlashAttribute("alert", "alert-red");
+    		return "redirect:/rawat-jalan/poli/jadwal/ubah/{idJadwalPoli}";
         }
 		
 		
